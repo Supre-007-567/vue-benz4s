@@ -14,6 +14,7 @@ import Header from '@/components/Header/LayoutHeader.vue'
     <span>lunbo3</span>
     <span>lunbo4</span>
     <span>lunbo5</span>
+    <span>lunbo6</span>
    </div>
   <!-- 底部 -->
 </template>
