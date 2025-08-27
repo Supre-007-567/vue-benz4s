@@ -13,21 +13,26 @@ const router = createRouter({
       component: () => import('@/views/Layout/LayoutPage.vue'),
       redirect: '/home', //重定向
       children: [
-        { path: 'home', name: 'Home', component: () => import('@/views/Home/HomePage.vue') },
+        { path: 'home', name: 'Home', component: () => import('@/views/Home/HomePage.vue') }, //首页 导航栏 + 展示汽车图片 + 宣传
         {
           path: 'cardetail',
           name: 'CarDetail',
-          component: () => import('@/views/CarDetail/CarDetail.vue'), //首页 导航栏 + 展示汽车图片 + 宣传
+          component: () => import('@/views/CarDetail/CarDetail.vue'), // 汽车详情页 查看汽车详情
         },
         {
           path: 'community',
           name: 'Community',
-          component: () => import('@/views/Community/CommunityPage.vue'), // 汽车详情页 查看汽车详情
+          component: () => import('@/views/Community/CommunityPage.vue'), // 用户社区页 用户发布信息交流
         },
         {
           path: 'reserve',
           name: 'Reserve',
-          component: () => import('@/views/Reserve/ReservePage.vue'), // 用户社区页 用户发布信息交流
+          component: () => import('@/views/Reserve/ReservePage.vue'), //预约试驾
+        },
+        {
+          path: 'service',
+          name: 'service',
+          component: () => import('@/views/Service/ServicePage.vue'), //服务页 保修 + 保养 + 预约试驾
         },
       ],
     },
