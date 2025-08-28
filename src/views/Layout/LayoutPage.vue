@@ -5,8 +5,8 @@ import Header from '@/components/Header/LayoutHeader.vue'
 <template>
   <!-- 头部导航栏 -->
   <Header></Header>
-  <!-- banner轮播图区域 -->
-
+  <!-- 路由出口(内容) -->
+  <router-view></router-view>
   <!-- 底部 -->
 </template>
 

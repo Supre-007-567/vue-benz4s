@@ -16,17 +16,17 @@ const router = createRouter({
         { path: 'home', name: 'Home', component: () => import('@/views/Home/HomePage.vue') }, //首页 导航栏 + 展示汽车图片 + 宣传
         {
           path: 'cardetail',
-          name: 'CarDetail',
+          name: 'carDetail',
           component: () => import('@/views/CarDetail/CarDetail.vue'), // 汽车详情页 查看汽车详情
         },
         {
           path: 'community',
-          name: 'Community',
+          name: 'community',
           component: () => import('@/views/Community/CommunityPage.vue'), // 用户社区页 用户发布信息交流
         },
         {
           path: 'reserve',
-          name: 'Reserve',
+          name: 'reserve',
           component: () => import('@/views/Reserve/ReservePage.vue'), //预约试驾
         },
         {
