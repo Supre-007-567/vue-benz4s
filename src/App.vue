@@ -9,9 +9,9 @@
 <style>
 /* 全局版心容器 */
 .container-inner {
-  max-width: 2000px; /* 你喜欢的版心宽度 */
-  margin: 0 auto; /* 居中 */
+  max-width: 1400px;
+  margin: 0 auto;
   width: 100%;
-  padding: 0 40px; /* 两边留白 */
+  padding: 0 40px;
 }
 </style>

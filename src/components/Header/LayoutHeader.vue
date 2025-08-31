@@ -1,19 +1,19 @@
 <script setup>
-// layout头部 + 轮播图 = 视口高度的100%
+// 移除固定高度限制，适配小屏折叠
 </script>
 
 <template>
-  <!-- 头部导航栏 -->
-  <header class="header-container">
-    <nav class="navbar navbar-expand-lg custom-navbar shadow-sm px-4 py-3">
+  <!-- 头部导航栏：删除固定高度的header-container类，改用navbar直接控制 -->
+  <header>
+    <nav class="navbar navbar-expand-lg custom-navbar shadow-sm px-4 py-2">
       <div class="container-fluid">
         <div class="container-inner d-flex align-items-center">
-          <!-- LOGO -->
+          <!-- LOGO：保持不变，但确保小屏不被挤压 -->
           <router-link to="/home" class="navbar-brand me-4 d-flex align-items-center">
             <img src="@/assets/benz-logo.png" alt="奔驰" height="40" />
           </router-link>
 
-          <!-- 折叠按钮 (小屏) -->
+          <!-- 折叠按钮：小屏时显示，保持不变 -->
           <button
             class="navbar-toggler"
             type="button"
@@ -26,29 +26,29 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <!-- 折叠区 -->
+          <!-- 折叠区：关键修复：小屏时让内容垂直排列且不溢出 -->
           <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
-            <!-- 左侧导航 -->
-            <ul class="navbar-nav align-items-lg-center">
+            <!-- 左侧导航：小屏时垂直排列，增加内边距避免拥挤 -->
+            <ul class="navbar-nav flex-grow-1 align-items-lg-center ms-auto">
               <li class="nav-item">
-                <router-link class="nav-link" to="/home">首页</router-link>
+                <router-link class="nav-link py-2" to="/home">首页</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" to="/service">服务</router-link>
+                <router-link class="nav-link py-2" to="/service">服务</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" to="/community">社区</router-link>
+                <router-link class="nav-link py-2" to="/community">社区</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" to="/reserve">预约试驾</router-link>
+                <router-link class="nav-link py-2" to="/reserve">预约试驾</router-link>
               </li>
             </ul>
 
-            <!-- 右侧 登录/注册 -->
-            <div class="d-flex align-items-center mt-3 mt-lg-0">
-              <router-link class="nav-link fw-bold" to="/login">登录</router-link>
+            <!-- 右侧登录/注册：小屏时垂直排列，与导航分开 -->
+            <div class="d-flex align-items-center mt-3 mt-lg-0 ms-lg-4">
+              <router-link class="nav-link fw-bold py-1" to="/login">登录</router-link>
               <span class="mx-2 text-light d-none d-lg-inline">|</span>
-              <router-link class="nav-link fw-bold" to="/login">注册</router-link>
+              <router-link class="nav-link fw-bold py-1" to="/login">注册</router-link>
             </div>
           </div>
         </div>
@@ -58,27 +58,34 @@
 </template>
 
 <style scoped>
-/* 导航栏容器设置固定高度 */
-.header-container {
-  height: 80px;
-}
-
-/* 导航栏 */
 .custom-navbar {
   background: linear-gradient(to bottom, #000000, #1a1a1a);
-  height: 100%;
+  min-height: 80px;
 }
 
-.navbar {
-  height: 100%;
+@media (max-width: 991px) {
+  #navbarContent {
+    margin-top: 1rem; /* 与LOGO保持距离 */
+    padding-bottom: 0.5rem;
+  }
+
+  .nav-item {
+    margin: 0.3rem 0;
+  }
+
+  .d-flex.flex-column {
+    flex-direction: row !important;
+    gap: 1.5rem;
+  }
+  /* 隐藏小屏的分割线 */
+  .d-none.d-lg-inline {
+    display: none !important;
+  }
 }
 
-/* LOGO */
 .navbar-brand img {
   max-height: 40px;
 }
-
-/* 链接样式 */
 .nav-link {
   font-size: 16px;
   color: #b3b3b3 !important;
