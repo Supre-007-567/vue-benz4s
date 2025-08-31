@@ -4,6 +4,11 @@ import banner1 from '@/assets/images/Abanner04.png'
 import banner2 from '@/assets/images/Abanner05.jpg'
 import banner3 from '@/assets/images/Bitem01.jpg'
 import banner4 from '@/assets/images/Abanner01.png'
+// import G63Model from '@/assets/3DModel/004_g63_red.glb'
+import g63_01 from '@/assets/images/g63/001-g63.jpg'
+import g63_02 from '@/assets/images/g63/002-g63.jpg'
+import g63_03 from '@/assets/images/g63/003-g63.jpg'
+import g63_04 from '@/assets/images/g63/004-g63.jpg'
 
 // const bannerData = [
 //   {
@@ -113,11 +118,95 @@ import banner4 from '@/assets/images/Abanner01.png'
         </button>
       </div>
     </div>
+    <!-- 内容区域 -->
+    <div class="content container-inner alibabaFont">
+      <div class="container my-5">
+        <!-- 标题 -->
+        <h1 class="text-left mb-4 fw-normal">年度热门车型</h1>
+        <div class="row g-4">
+          <!-- 第一列：3D模型 -->
+          <div class="card rounded-0 border-0 col-md-5">
+            <div class="h-100 model-container">
+              <model-viewer
+                src="/public/mdoel/004_g63_amg_red.glb"
+                alt="奔驰 G63"
+                camera-controls
+                ar
+                autocorrect
+                class="w-100"
+                style="height: 300px"
+                camera-orbit="40deg 80deg 7m"
+              ></model-viewer>
+            </div>
+          </div>
 
-    <div class="content container-inner">
-      <div>内容1</div>
-      <div>内容2</div>
-      <div>内容3</div>
+          <!-- 第二列：图片（上下两张） -->
+          <div class="col-md-2 d-flex flex-column gap-4">
+            <div
+              class="card rounded-0 border-0 shadow-sm flex-fill overflow-hidden-relative overflow-hidden"
+            >
+              <img
+                :src="g63_01"
+                class="card-img-top object-fit-cover w-100 h-100"
+                alt="G63 正面图"
+              />
+            </div>
+            <div
+              class="card rounded-0 border-0 shadow-sm flex-fill overflow-hidden-relative overflow-hidden"
+            >
+              <img
+                :src="g63_02"
+                class="card-img-top object-fit-cover w-100 h-100"
+                alt="G63 内饰图"
+              />
+            </div>
+          </div>
+
+          <!-- 第三列：图片（上下两张） -->
+          <div class="col-md-2 d-flex flex-column gap-4">
+            <div
+              class="card rounded-0 border-0 shadow-sm flex-fill overflow-hidden-relative overflow-hidden"
+            >
+              <img
+                :src="g63_03"
+                class="card-img-top object-fit-cover w-100 h-100"
+                alt="G63 车尾图"
+              />
+            </div>
+            <div
+              class="card rounded-0 shadow-sm flex-fill overflow-hidden-relative overflow-hidden"
+            >
+              <img
+                :src="g63_04"
+                class="card-img-top object-fit-cover w-100 h-100"
+                alt="G63 越野图"
+              />
+            </div>
+          </div>
+
+          <!-- 第四列：介绍与按钮 -->
+          <div class="col-md-3">
+            <div
+              class="card text-hot rounded-0 border-0 h-100 shadow-lg d-flex flex-column justify-content-between p-3"
+            >
+              <div>
+                <h5 class="fw-bold">Mercedes-Benz G63</h5>
+                <p class="text-muted">
+                  生而无畏，注定非凡。<br />Mercedes-Benz
+                  G63，以刚毅的线条勾勒传奇，以澎湃的动力诠释自由。<br />
+                  AMG V8引擎的心跳，伴随低沉而浑厚的声浪，让每一次启程都充满力量。<br />方正车身，彰显经典不朽；奢华内饰，尽显尊崇格调。<br />
+                  <!-- 它不仅是一辆
+                    SUV，更是征服与优雅的象征。无论都市街头，还是旷野山川，G63
+                    都将以王者之姿，陪伴你征服前路，书写属于你的荣耀与传奇。 -->
+                </p>
+              </div>
+              <div class="mt-3">
+                <a href="#" class="btn btn-dark w-100">了解更多</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -125,27 +214,26 @@ import banner4 from '@/assets/images/Abanner01.png'
 <style scoped>
 /* 1. 轮播图盒子基础样式：大屏保持「视口高度100% - 导航栏80px」 */
 .banner {
-  height: calc(100vh - 80px); /* 大屏核心：导航栏+轮播图=100vh */
-  overflow: hidden; /* 防止图片溢出 */
+  height: calc(100vh - 80px);
+  overflow: hidden; /* 防图片溢出 */
 }
 
-/* 2. 轮播图内部层级：全部100%高度，确保图片能继承盒子高度 */
+/* 2.确保图片能继承盒子高度 */
 #carouselExampleCaptions,
 .carousel-inner,
 .carousel-item {
-  height: 100%; /* 关键：让所有父容器都和.banner同高 */
+  height: 100%;
 }
 
-/* 3. 图片样式：保留h-100和object-fit，确保填充且不变形 */
 .carousel-item img {
   width: 100%;
-  height: 100% !important; /* 强制继承父容器高度，优先级拉满 */
-  object-fit: cover; /* 核心：按比例填充，裁剪多余部分，不拉伸 */
+  height: 100% !important;
+  object-fit: cover;
 }
 
-/* 4. 文字样式保持不变 */
+/* 4. 文字样式不变 */
 .carousel-caption {
-  left: 15%; /* 修正原-10%的溢出问题 */
+  left: 15%;
   bottom: 20%;
   text-align: left;
   color: #f0f0f0;
@@ -159,19 +247,17 @@ import banner4 from '@/assets/images/Abanner01.png'
 }
 
 /* 文字动画 */
-/* 给文字容器加过渡，控制动画时长和曲线 */
 .text-animate {
-  transition: all 0.6s ease-out; /* 0.6秒平滑过渡，自然不突兀 */
+  transition: all 0.6s ease-out;
 }
-/* 未激活的轮播项：文字隐藏（透明+向下位移） */
 .carousel-item:not(.active) .text-animate {
   opacity: 0; /* 透明隐藏 */
-  transform: translateX(-40px); /* 向下位移20px，模拟“未弹出”状态 */
+  transform: translateX(-40px); /* 向下位移20px*/
 }
-/* 激活的轮播项：文字显示（不透明+复位） */
+
 .carousel-item.active .text-animate {
   opacity: 1; /* 完全显示 */
-  transform: translateY(0); /* 位移复位，弹入到正常位置 */
+  transform: translateY(0);
 }
 
 /* 响应式调整 轮播图盒子的高度 */
@@ -209,4 +295,24 @@ import banner4 from '@/assets/images/Abanner01.png'
     height: calc(100vh - 80px) !important;
   }
 }
+
+/* 内容 */
+/* 热门车型 */
+/* 模型 */
+.model-container {
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+/* 保持原过渡动画 */
+.content img {
+  transition: all 0.3s;
+}
+.content img:hover {
+  transform: scale(1.05);
+}
+
+/* 可选：确保父容器无额外内边距导致溢出 */
 </style>
