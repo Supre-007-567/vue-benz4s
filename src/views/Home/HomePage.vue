@@ -1,9 +1,32 @@
 <script setup>
 // 首页
-import banner1 from '@/assets/images/Abanner01.png'
-import banner2 from '@/assets/images/Bitem01.jpg'
-import banner3 from '@/assets/images/Abanner04.png'
-import banner4 from '@/assets/images/Abanner05.jpg'
+import banner1 from '@/assets/images/Abanner04.png'
+import banner2 from '@/assets/images/Abanner05.jpg'
+import banner3 from '@/assets/images/Bitem01.jpg'
+import banner4 from '@/assets/images/Abanner01.png'
+
+// const bannerData = [
+//   {
+//     banner1: '@/assets/images/Abanner04.png',
+//     title1: '真正的尊',
+//     title2: '何需靠“借”',
+//   },
+//   {
+//     banner1: '@/assets/images/Abanner05.jpg',
+//     title1: '何以奔驰',
+//     title2: '惟有奔驰',
+//   },
+//   {
+//     banner1: '@/assets/images/Bitem01.jpg',
+//     title1: '引擎的轰鸣',
+//     title2: '是格调的回响',
+//   },
+//   {
+//     banner1: '@/assets/images/Abanner04.png',
+//     title1: '要么最好',
+//     title2: '要么一无所有',
+//   },
+// ]
 </script>
 
 <template>
@@ -44,29 +67,29 @@ import banner4 from '@/assets/images/Abanner05.jpg'
           <div class="carousel-item active">
             <img :src="banner1" class="d-block w-100 h-100 object-cover" alt="汽车宣传图1" />
             <div class="carousel-caption text-animate d-none d-xl-block">
-              <p class="title1">要么最好</p>
-              <p class="title2">要么一无所有</p>
+              <p class="title1">真正的尊</p>
+              <p class="title2">何需靠“借”</p>
             </div>
           </div>
           <div class="carousel-item">
             <img :src="banner2" class="d-block w-100 h-100 object-cover" alt="汽车宣传图2" />
+            <div class="carousel-caption text-animate d-none d-xl-block">
+              <p class="title1">何以奔驰</p>
+              <p class="title2">惟有奔驰</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img :src="banner3" class="d-block w-100 h-100 object-cover" alt="汽车宣传图3" />
             <div class="carousel-caption text-animate d-none d-xl-block">
               <p class="title1">引擎的轰鸣</p>
               <p class="title2">是格调的回响</p>
             </div>
           </div>
           <div class="carousel-item">
-            <img :src="banner3" class="d-block w-100 h-100 object-cover" alt="汽车宣传图3" />
-            <div class="carousel-caption text-animate d-none d-xl-block">
-              <p class="title1">真正的尊</p>
-              <p class="title2">何需靠“借”</p>
-            </div>
-          </div>
-          <div class="carousel-item">
             <img :src="banner4" class="d-block w-100 h-100 object-cover" alt="汽车宣传图4" />
             <div class="carousel-caption text-animate d-none d-xl-block">
-              <p class="title1">何以奔驰</p>
-              <p class="title2">惟有奔驰</p>
+              <p class="title1">要么最好</p>
+              <p class="title2">要么一无所有</p>
             </div>
           </div>
         </div>
@@ -91,7 +114,7 @@ import banner4 from '@/assets/images/Abanner05.jpg'
       </div>
     </div>
 
-    <div class="content">
+    <div class="content container-inner">
       <div>内容1</div>
       <div>内容2</div>
       <div>内容3</div>
