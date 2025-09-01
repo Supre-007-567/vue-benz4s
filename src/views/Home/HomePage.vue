@@ -9,29 +9,7 @@ import g63_01 from '@/assets/images/g63/001-g63.jpg'
 import g63_02 from '@/assets/images/g63/002-g63.jpg'
 import g63_03 from '@/assets/images/g63/003-g63.jpg'
 import g63_04 from '@/assets/images/g63/004-g63.jpg'
-
-// const bannerData = [
-//   {
-//     banner1: '@/assets/images/Abanner04.png',
-//     title1: '真正的尊',
-//     title2: '何需靠“借”',
-//   },
-//   {
-//     banner1: '@/assets/images/Abanner05.jpg',
-//     title1: '何以奔驰',
-//     title2: '惟有奔驰',
-//   },
-//   {
-//     banner1: '@/assets/images/Bitem01.jpg',
-//     title1: '引擎的轰鸣',
-//     title2: '是格调的回响',
-//   },
-//   {
-//     banner1: '@/assets/images/Abanner04.png',
-//     title1: '要么最好',
-//     title2: '要么一无所有',
-//   },
-// ]
+import Recommend from './Components/RecommendCar.vue'
 </script>
 
 <template>
@@ -121,39 +99,7 @@ import g63_04 from '@/assets/images/g63/004-g63.jpg'
     <!-- 内容区域 -->
     <div class="content container-inner">
       <!-- 推荐车型 -->
-      <div class="recommend alibabaFont">
-        <h1 class="content-title alibabaFont">推荐车型</h1>
-        <div class="rec-grid-container">
-          <div class="rec-box-big">
-            <div class="rec-pic">
-              <img src="../../assets/images/recommend/01-rec.webp" alt="" />
-            </div>
-            <div class="title-box text-light">
-              <div class="title1">奔驰 C180 优雅流线承经典，智驾随行悦日常</div>
-              <div class="title2">从容掌控每程路，绘就格调新篇</div>
-              <div class="btn-box">
-                <button class="btn buy-btn btn-primary">立即购买</button>
-                <button class="btn btn-secondary reserve-btn">预约试驾</button>
-              </div>
-            </div>
-          </div>
-          <div class="rec-box">
-            <div class="rec-pic">
-              <img src="../../assets/images/recommend/02-rec.avif" alt="" />
-            </div>
-            <div class="title-box text-light">
-              <div class="title1">奔驰 C180 优雅流线承经典，智驾随行悦日常</div>
-              <div class="title2">从容掌控每程路，绘就格调新篇</div>
-              <div class="btn-box">
-                <button class="btn learnMore-btn btn-primary">了解更多</button>
-              </div>
-            </div>
-          </div>
-          <div class="rec-box"></div>
-          <div class="rec-box"></div>
-          <div class="rec-box"></div>
-        </div>
-      </div>
+      <Recommend></Recommend>
       <!-- 热门车型 -->
       <div class="hot alibabaFont">
         <!-- 标题 -->
@@ -347,101 +293,5 @@ import g63_04 from '@/assets/images/g63/004-g63.jpg'
 }
 .content img:hover {
   transform: scale(1.05);
-}
-
-.content-title {
-  margin: 30px 0;
-}
-
-/* 推荐车型 */
-.rec-grid-container {
-  display: grid;
-  /* 三列两行 */
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 20px;
-}
-/* 大盒子 */
-.rec-box-big {
-  overflow: hidden;
-  background-image: url('../../assets/images/recommend/01-rec-bg.webp');
-  /* 独自占两列 */
-  grid-column: 1/3;
-  grid-row: 1/2;
-  position: relative;
-}
-.rec-box-big .rec-pic img {
-  width: 859px;
-  height: 380px;
-  object-fit: cover;
-}
-.rec-box-big .title-box {
-  /* 标题盒子渐变 */
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.95) 100%);
-  padding: 30px 20px;
-  font-style: italic;
-  position: relative;
-  z-index: 10;
-}
-.rec-box-big .title-box .title1 {
-  font-size: 28px;
-  font-weight: normal;
-}
-.rec-box-big .title-box .title2 {
-  font-size: 15px;
-}
-.rec-box-big .title-box .btn-box {
-  padding-top: 10px;
-  display: flex;
-  gap: 15px;
-}
-.rec-box-big .title-box .buy-btn {
-  border-radius: 0;
-}
-.rec-box-big .title-box .reserve-btn {
-  border-radius: 0;
-  background-color: rgba(255, 255, 255, 0.1);
-}
-/* 小盒子 */
-.rec-box {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: pink;
-}
-.rec-box .rec-pic img {
-  width: 415px;
-  height: 380px;
-  object-fit: cover;
-}
-.rec-box .title-box {
-  /* 标题盒子渐变 */
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.95) 100%);
-  padding: 30px 20px;
-  font-style: italic;
-  position: relative;
-  z-index: 10;
-}
-
-.rec-box .title-box .title1 {
-  font-size: 28px;
-  font-weight: normal;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.rec-box .title-box .title2 {
-  font-size: 15px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.rec-box .title-box .btn-box {
-  padding-top: 10px;
-  display: flex;
-  gap: 15px;
-}
-.rec-box .title-box .btn-box .learnMore-btn {
-  border-radius: 0;
 }
 </style>
