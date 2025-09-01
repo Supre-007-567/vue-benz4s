@@ -106,7 +106,9 @@ import Recommend from './Components/RecommendCar.vue'
         <h1 class="text-left content-title">年度热门车型</h1>
         <div class="row g-4">
           <!-- 第一列：3D模型 -->
-          <div class="card rounded-0 border-0 col-md-5">
+          <div
+            class="col-xl-5 col-lg-6 col-md-6 col-sm-6 d-none d-sm-block card rounded-0 border-0"
+          >
             <div class="h-100 model-container">
               <model-viewer
                 src="/public/mdoel/004_g63_amg_red.glb"
@@ -115,14 +117,13 @@ import Recommend from './Components/RecommendCar.vue'
                 ar
                 autocorrect
                 class="w-100"
-                style="height: 300px"
                 camera-orbit="30deg 70deg 7m"
               ></model-viewer>
             </div>
           </div>
 
           <!-- 第二列：图片（上下两张） -->
-          <div class="col-md-2 d-flex flex-column gap-4">
+          <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 d-flex flex-column gap-4">
             <div
               class="card rounded-0 border-0 shadow-sm flex-fill overflow-hidden-relative overflow-hidden"
             >
@@ -144,7 +145,7 @@ import Recommend from './Components/RecommendCar.vue'
           </div>
 
           <!-- 第三列：图片（上下两张） -->
-          <div class="col-md-2 d-flex flex-column gap-4">
+          <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 d-flex flex-column gap-4">
             <div
               class="card rounded-0 border-0 shadow-sm flex-fill overflow-hidden-relative overflow-hidden"
             >
@@ -166,7 +167,7 @@ import Recommend from './Components/RecommendCar.vue'
           </div>
 
           <!-- 第四列：介绍与按钮 -->
-          <div class="col-md-3">
+          <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
             <div
               class="card text-hot rounded-0 border-0 h-100 shadow-lg d-flex flex-column justify-content-between p-3"
             >
@@ -280,6 +281,9 @@ import Recommend from './Components/RecommendCar.vue'
 /* 内容 */
 /* 热门车型 */
 /* 模型 */
+model-viewer {
+  height: 300px;
+}
 .model-container {
   background: #f5f5f5;
   display: flex;
