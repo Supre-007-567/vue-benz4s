@@ -100,10 +100,6 @@ console.log(props.propsData)
 /* 内容 */
 /* 热门车型 */
 /* 模型 */
-.hot {
-  /* background-color: rgba(0, 0, 0, 0.1); */
-  /* padding: 10px; */
-}
 model-viewer {
   height: 300px;
   /* background-image: url('../../../assets/images/g63/005-model-bg.jpg');

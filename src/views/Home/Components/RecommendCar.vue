@@ -29,29 +29,27 @@ const propsData = [
 </script>
 
 <template>
-  <div>
-    <!-- 推荐车型 -->
-    <div class="recommend alibabaFont">
-      <h1 class="content-title alibabaFont">推荐车型</h1>
-      <div class="rec-grid-container">
-        <div class="rec-box-big">
-          <div class="rec-pic">
-            <img src="../../../assets/images/recommend/01-rec.webp" alt="" />
-          </div>
-          <!-- grid布局: 共五个盒子 三列两行 第一行 一大一小 -->
-          <!-- 大图 占两列 -->
-          <div class="title-box text-light">
-            <div class="title1">奔驰 C180 优雅流线承经典，智驾随行悦日常</div>
-            <div class="title2">从容掌控每程路，绘就格调新篇</div>
-            <div class="btn-box">
-              <button class="btn buy-btn btn-primary">立即购买</button>
-              <button class="btn btn-secondary reserve-btn">预约试驾</button>
-            </div>
+  <!-- 推荐车型 -->
+  <div class="recommend alibabaFont" id="recommend-section">
+    <h1 class="content-title alibabaFont">推荐车型</h1>
+    <div class="rec-grid-container">
+      <div class="rec-box-big">
+        <div class="rec-pic">
+          <img src="../../../assets/images/recommend/01-rec.webp" alt="" />
+        </div>
+        <!-- grid布局: 共五个盒子 三列两行 第一行 一大一小 -->
+        <!-- 大图 占两列 -->
+        <div class="title-box text-light">
+          <div class="title1">奔驰 C180 优雅流线承经典，智驾随行悦日常</div>
+          <div class="title2">从容掌控每程路，绘就格调新篇</div>
+          <div class="btn-box">
+            <button class="btn buy-btn btn-primary">立即购买</button>
+            <button class="btn btn-secondary reserve-btn">预约试驾</button>
           </div>
         </div>
-        <!-- 第一列 -->
-        <RecBox v-for="item in propsData" :propsData="item" :key="item.carId"></RecBox>
       </div>
+      <!-- 第一列 -->
+      <RecBox v-for="item in propsData" :propsData="item" :key="item.carId"></RecBox>
     </div>
   </div>
 </template>
