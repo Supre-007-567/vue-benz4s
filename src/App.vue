@@ -12,7 +12,7 @@
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
-  padding: 0 40px;
+  padding: 0 60px;
 }
 .alibabaFont {
   font-family: 'alibabaFont';

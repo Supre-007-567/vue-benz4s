@@ -36,7 +36,7 @@ import g63_04 from '@/assets/images/g63/004-g63.jpg'
 
 <template>
   <div>
-    <!-- 轮播图区域：.banner 是核心调整对象 -->
+    <!-- 轮播图区域 -->
     <div class="banner">
       <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -119,10 +119,45 @@ import g63_04 from '@/assets/images/g63/004-g63.jpg'
       </div>
     </div>
     <!-- 内容区域 -->
-    <div class="content container-inner alibabaFont">
-      <div class="container my-5">
+    <div class="content container-inner">
+      <!-- 推荐车型 -->
+      <div class="recommend alibabaFont">
+        <h1 class="content-title alibabaFont">推荐车型</h1>
+        <div class="rec-grid-container">
+          <div class="rec-box-big">
+            <div class="rec-pic">
+              <img src="../../assets/images/recommend/01-rec.webp" alt="" />
+            </div>
+            <div class="title-box text-light">
+              <div class="title1">奔驰 C180 优雅流线承经典，智驾随行悦日常</div>
+              <div class="title2">从容掌控每程路，绘就格调新篇</div>
+              <div class="btn-box">
+                <button class="btn buy-btn btn-primary">立即购买</button>
+                <button class="btn btn-secondary reserve-btn">预约试驾</button>
+              </div>
+            </div>
+          </div>
+          <div class="rec-box">
+            <div class="rec-pic">
+              <img src="../../assets/images/recommend/02-rec.avif" alt="" />
+            </div>
+            <div class="title-box text-light">
+              <div class="title1">奔驰 C180 优雅流线承经典，智驾随行悦日常</div>
+              <div class="title2">从容掌控每程路，绘就格调新篇</div>
+              <div class="btn-box">
+                <button class="btn learnMore-btn btn-primary">了解更多</button>
+              </div>
+            </div>
+          </div>
+          <div class="rec-box"></div>
+          <div class="rec-box"></div>
+          <div class="rec-box"></div>
+        </div>
+      </div>
+      <!-- 热门车型 -->
+      <div class="hot alibabaFont">
         <!-- 标题 -->
-        <h1 class="text-left mb-4 fw-normal">年度热门车型</h1>
+        <h1 class="text-left content-title">年度热门车型</h1>
         <div class="row g-4">
           <!-- 第一列：3D模型 -->
           <div class="card rounded-0 border-0 col-md-5">
@@ -135,7 +170,7 @@ import g63_04 from '@/assets/images/g63/004-g63.jpg'
                 autocorrect
                 class="w-100"
                 style="height: 300px"
-                camera-orbit="40deg 80deg 7m"
+                camera-orbit="30deg 70deg 7m"
               ></model-viewer>
             </div>
           </div>
@@ -314,5 +349,99 @@ import g63_04 from '@/assets/images/g63/004-g63.jpg'
   transform: scale(1.05);
 }
 
-/* 可选：确保父容器无额外内边距导致溢出 */
+.content-title {
+  margin: 30px 0;
+}
+
+/* 推荐车型 */
+.rec-grid-container {
+  display: grid;
+  /* 三列两行 */
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+}
+/* 大盒子 */
+.rec-box-big {
+  overflow: hidden;
+  background-image: url('../../assets/images/recommend/01-rec-bg.webp');
+  /* 独自占两列 */
+  grid-column: 1/3;
+  grid-row: 1/2;
+  position: relative;
+}
+.rec-box-big .rec-pic img {
+  width: 859px;
+  height: 380px;
+  object-fit: cover;
+}
+.rec-box-big .title-box {
+  /* 标题盒子渐变 */
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.95) 100%);
+  padding: 30px 20px;
+  font-style: italic;
+  position: relative;
+  z-index: 10;
+}
+.rec-box-big .title-box .title1 {
+  font-size: 28px;
+  font-weight: normal;
+}
+.rec-box-big .title-box .title2 {
+  font-size: 15px;
+}
+.rec-box-big .title-box .btn-box {
+  padding-top: 10px;
+  display: flex;
+  gap: 15px;
+}
+.rec-box-big .title-box .buy-btn {
+  border-radius: 0;
+}
+.rec-box-big .title-box .reserve-btn {
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+/* 小盒子 */
+.rec-box {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: pink;
+}
+.rec-box .rec-pic img {
+  width: 415px;
+  height: 380px;
+  object-fit: cover;
+}
+.rec-box .title-box {
+  /* 标题盒子渐变 */
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.95) 100%);
+  padding: 30px 20px;
+  font-style: italic;
+  position: relative;
+  z-index: 10;
+}
+
+.rec-box .title-box .title1 {
+  font-size: 28px;
+  font-weight: normal;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.rec-box .title-box .title2 {
+  font-size: 15px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.rec-box .title-box .btn-box {
+  padding-top: 10px;
+  display: flex;
+  gap: 15px;
+}
+.rec-box .title-box .btn-box .learnMore-btn {
+  border-radius: 0;
+}
 </style>
