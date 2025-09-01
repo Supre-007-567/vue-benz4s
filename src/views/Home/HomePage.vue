@@ -4,12 +4,50 @@ import banner1 from '@/assets/images/Abanner04.png'
 import banner2 from '@/assets/images/Abanner05.jpg'
 import banner3 from '@/assets/images/Bitem01.jpg'
 import banner4 from '@/assets/images/Abanner01.png'
-// import G63Model from '@/assets/3DModel/004_g63_red.glb'
-import g63_01 from '@/assets/images/g63/001-g63.jpg'
-import g63_02 from '@/assets/images/g63/002-g63.jpg'
-import g63_03 from '@/assets/images/g63/003-g63.jpg'
-import g63_04 from '@/assets/images/g63/004-g63.jpg'
+// g63 图片
+import g63Img1 from '@/assets/images/g63/001-g63.jpg'
+import g63Img2 from '@/assets/images/g63/002-g63.jpg'
+import g63Img3 from '@/assets/images/g63/003-g63.jpg'
+import g63Img4 from '@/assets/images/g63/004-g63.jpg'
+// 1990图片
+import evoImg1 from '@/assets/images/1990/01-1990.jpeg'
+import evoImg2 from '@/assets/images/1990/02-1990.webp'
+import evoImg3 from '@/assets/images/1990/03-1990.webp'
+import evoImg4 from '@/assets/images/1990/04-1990.webp'
+// 引入组件
 import Recommend from './Components/RecommendCar.vue'
+import HotCart from './Components/HotCart.vue'
+
+const propsData = [
+  {
+    hotId: 1,
+    title: '年度热门车型',
+    modelUrl: '/public/mdoel/004_g63_amg_red.glb',
+    imgUrl1: g63Img1, // 直接用引入的变量
+    imgUrl2: g63Img2,
+    imgUrl3: g63Img3,
+    imgUrl4: g63Img4,
+    carName: 'Mercedes-Benz G63',
+    desc1: '生而无畏，注定非凡',
+    desc2: 'Mercedes-BenzG63，以刚毅的线条勾勒传奇，以澎湃的动力诠释自由。',
+    desc3: 'AMG V8引擎的心跳，伴随低沉而浑厚的声浪，让每一次启程都充满力量。',
+    desc4: '方正车身，彰显经典不朽；奢华内饰，尽显尊崇格调。',
+  },
+  {
+    hotId: 2,
+    title: '历史最佳车型',
+    modelUrl: '/public/mdoel/005_1990 190 evo.glb',
+    imgUrl1: evoImg1, // 直接用引入的变量
+    imgUrl2: evoImg2,
+    imgUrl3: evoImg3,
+    imgUrl4: evoImg4,
+    carName: 'Mercedes-Benz 190 Evo II',
+    desc1: '赛道基因，经典传世',
+    desc2: '以赛车化线条定格经典，凭硬核实力风靡全球。',
+    desc3: '2.5L 直六引擎轰鸣，迸发强劲动力，当年热销身影至今仍是车迷珍藏记忆。',
+    desc4: '宽体套件彰显独特，简约内饰藏赛道魂，经典设计让其销量与口碑双丰收。',
+  },
+]
 </script>
 
 <template>
@@ -101,94 +139,7 @@ import Recommend from './Components/RecommendCar.vue'
       <!-- 推荐车型 -->
       <Recommend></Recommend>
       <!-- 热门车型 -->
-      <div class="hot alibabaFont">
-        <!-- 标题 -->
-        <h1 class="text-left content-title">年度热门车型</h1>
-        <div class="row g-4">
-          <!-- 第一列：3D模型 -->
-          <div
-            class="col-xl-5 col-lg-6 col-md-6 col-sm-6 d-none d-sm-block card rounded-0 border-0"
-          >
-            <div class="h-100 model-container">
-              <model-viewer
-                src="/public/mdoel/004_g63_amg_red.glb"
-                alt="奔驰 G63"
-                camera-controls
-                ar
-                autocorrect
-                class="w-100"
-                camera-orbit="30deg 70deg 7m"
-              ></model-viewer>
-            </div>
-          </div>
-
-          <!-- 第二列：图片（上下两张） -->
-          <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 d-flex flex-column gap-4">
-            <div
-              class="card rounded-0 border-0 shadow-sm flex-fill overflow-hidden-relative overflow-hidden"
-            >
-              <img
-                :src="g63_01"
-                class="card-img-top object-fit-cover w-100 h-100"
-                alt="G63 正面图"
-              />
-            </div>
-            <div
-              class="card rounded-0 border-0 shadow-sm flex-fill overflow-hidden-relative overflow-hidden"
-            >
-              <img
-                :src="g63_02"
-                class="card-img-top object-fit-cover w-100 h-100"
-                alt="G63 内饰图"
-              />
-            </div>
-          </div>
-
-          <!-- 第三列：图片（上下两张） -->
-          <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 d-flex flex-column gap-4">
-            <div
-              class="card rounded-0 border-0 shadow-sm flex-fill overflow-hidden-relative overflow-hidden"
-            >
-              <img
-                :src="g63_03"
-                class="card-img-top object-fit-cover w-100 h-100"
-                alt="G63 车尾图"
-              />
-            </div>
-            <div
-              class="card rounded-0 shadow-sm flex-fill overflow-hidden-relative overflow-hidden"
-            >
-              <img
-                :src="g63_04"
-                class="card-img-top object-fit-cover w-100 h-100"
-                alt="G63 越野图"
-              />
-            </div>
-          </div>
-
-          <!-- 第四列：介绍与按钮 -->
-          <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-            <div
-              class="card text-hot rounded-0 border-0 h-100 shadow-lg d-flex flex-column justify-content-between p-3"
-            >
-              <div>
-                <h5 class="fw-bold">Mercedes-Benz G63</h5>
-                <p class="text-muted">
-                  生而无畏，注定非凡。<br />Mercedes-Benz
-                  G63，以刚毅的线条勾勒传奇，以澎湃的动力诠释自由。<br />
-                  AMG V8引擎的心跳，伴随低沉而浑厚的声浪，让每一次启程都充满力量。<br />方正车身，彰显经典不朽；奢华内饰，尽显尊崇格调。<br />
-                  <!-- 它不仅是一辆
-                    SUV，更是征服与优雅的象征。无论都市街头，还是旷野山川，G63
-                    都将以王者之姿，陪伴你征服前路，书写属于你的荣耀与传奇。 -->
-                </p>
-              </div>
-              <div class="mt-3">
-                <a href="#" class="btn btn-dark w-100">了解更多</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <HotCart v-for="item in propsData" :key="item.hotId" :propsData="item"></HotCart>
     </div>
   </div>
 </template>
@@ -280,22 +231,4 @@ import Recommend from './Components/RecommendCar.vue'
 
 /* 内容 */
 /* 热门车型 */
-/* 模型 */
-model-viewer {
-  height: 300px;
-}
-.model-container {
-  background: #f5f5f5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-}
-/* 保持原过渡动画 */
-.content img {
-  transition: all 0.3s;
-}
-.content img:hover {
-  transform: scale(1.05);
-}
 </style>
