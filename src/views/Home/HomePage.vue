@@ -151,8 +151,9 @@ const propsData = [
       <Recommend></Recommend>
       <!-- 热门车型 -->
       <HotCart v-for="item in propsData" :key="item.hotId" :propsData="item"></HotCart>
-      <!-- 中心轮播 -->
+      <!-- 走马灯轮播 -->
       <Carousel
+        class="d-none d-xl-block"
         :items-to-show="3"
         :wrap-around="true"
         :autoplay="3000"

@@ -168,7 +168,7 @@ onUnmounted(() => {
   pointer-events: none;
 }
 
-/* 4. 原有导航样式完全保留，不做任何修改 */
+/* 4. 原有导航样式完全保留 */
 .custom-navbar {
   background: linear-gradient(to bottom, #000000, #1a1a1a);
   min-height: 80px;
