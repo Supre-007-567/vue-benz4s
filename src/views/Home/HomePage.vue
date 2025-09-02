@@ -17,7 +17,18 @@ import evoImg4 from '@/assets/images/1990/04-1990.webp'
 // 引入组件
 import Recommend from './Components/RecommendCar.vue'
 import HotCart from './Components/HotCart.vue'
-
+// 轮播图插件
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Slide } from 'vue3-carousel'
+// 配置轮播参数
+const slides = [
+  { id: 1, img: banner1 },
+  { id: 2, img: banner2 },
+  { id: 3, img: banner3 },
+  { id: 4, img: banner4 },
+  { id: 5, img: banner2 },
+]
+// 父传子数据
 const propsData = [
   {
     hotId: 1,
@@ -140,6 +151,27 @@ const propsData = [
       <Recommend></Recommend>
       <!-- 热门车型 -->
       <HotCart v-for="item in propsData" :key="item.hotId" :propsData="item"></HotCart>
+      <!-- 中心轮播 -->
+      <Carousel
+        :items-to-show="3"
+        :wrap-around="true"
+        :autoplay="3000"
+        :pause-autoplay-on-hover="true"
+        :mouse-drag="true"
+        :touch-drag="true"
+        :speed="100"
+        :center-mode="true"
+        :snap-align="'center'"
+      >
+        <Slide v-for="slide in slides" :key="slide.id">
+          <img
+            :src="slide.img"
+            alt=""
+            style="width: 100%; transform: scale(0.9); transition: transform 0.3s"
+            class="slide-img shadow-lg"
+          />
+        </Slide>
+      </Carousel>
     </div>
   </div>
 </template>
@@ -231,4 +263,12 @@ const propsData = [
 
 /* 内容 */
 /* 热门车型 */
+
+/* 中心轮播 */
+
+.slide-img {
+  width: 150px;
+  height: 500px;
+  object-fit: cover;
+}
 </style>
