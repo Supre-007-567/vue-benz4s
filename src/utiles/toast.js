@@ -1,4 +1,8 @@
 import { Toast } from 'bootstrap/dist/js/bootstrap.esm.js'
+// bs轻提示
+
+const msg = 'this is 修改 of cui'
+console.log(msg);
 
 export function toastSuccess(message, duration = 2000) {
   createToast(message, 'bg-success text-white', duration)
