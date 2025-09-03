@@ -5,10 +5,8 @@ const userStore = useUserStore()
 const flag = ref(false)
 if (userStore.token !== '') {
   flag.value = true
-  console.log('已登陆', userStore.currentUserInfo)
 } else {
   flag.value = false
-  console.log('未登录')
 }
 
 const handleLogout = () => {
@@ -95,7 +93,6 @@ onUnmounted(() => {
   window.removeEventListener('load', onResizeOrLoad)
 })
 
-console.log(JSON.parse(localStorage.getItem('my-user-store')).token);
 
 </script>
 
