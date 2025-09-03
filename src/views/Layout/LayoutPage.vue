@@ -1,6 +1,7 @@
 <script setup>
 import Header from '@/components/Header/LayoutHeader.vue'
 import ToTop from './components/ToTop.vue'
+import Footer from '@/components/Footer/LayoutFooter.vue'
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import ToTop from './components/ToTop.vue'
   <ToTop></ToTop>
 
   <!-- 底部 -->
+  <Footer></Footer>
 </template>
 
 <style scoped></style>
