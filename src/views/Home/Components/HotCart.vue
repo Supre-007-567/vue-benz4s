@@ -2,7 +2,6 @@
 const props = defineProps({
   propsData: Object,
 })
-console.log(props.propsData)
 </script>
 <template>
   <!-- 热门车型 -->
@@ -15,7 +14,7 @@ console.log(props.propsData)
         <div class="h-100 model-container">
           <model-viewer
             :src="props.propsData.modelUrl"
-            alt="奔驰 G63"
+            alt="奔驰 G70"
             camera-controls
             ar
             autocorrect
@@ -39,7 +38,7 @@ console.log(props.propsData)
           <img
             :src="props.propsData.imgUrl1"
             class="card-img-top object-fit-cover w-100 h-100"
-            alt="G63 正面图"
+            alt="G63 123 正面图"
           />
         </div>
         <div
@@ -48,7 +47,7 @@ console.log(props.propsData)
           <img
             :src="props.propsData.imgUrl2"
             class="card-img-top object-fit-cover w-100 h-100"
-            alt="G63 内饰图"
+            alt="G63 修改 of 郭 内饰图"
           />
         </div>
       </div>
@@ -83,9 +82,6 @@ console.log(props.propsData)
             <p class="text-muted">
               {{ props.propsData.desc1 }}<br />{{ props.propsData.desc2 }}<br />
               {{ props.propsData.desc3 }}<br />{{ props.propsData.desc4 }}<br />
-              <!-- 它不仅是一辆
-                    SUV，更是征服与优雅的象征。无论都市街头，还是旷野山川，G63
-                    都将以王者之姿，陪伴你征服前路，书写属于你的荣耀与传奇。 -->
             </p>
           </div>
           <div class="mt-3">
@@ -102,9 +98,6 @@ console.log(props.propsData)
 /* 模型 */
 model-viewer {
   height: 300px;
-  /* background-image: url('../../../assets/images/g63/005-model-bg.jpg');
-  background-repeat: no-repeat;
-  background-position: center; */
 }
 .tag {
   position: absolute;
