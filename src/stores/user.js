@@ -17,9 +17,7 @@ export const useUserStore = defineStore(
       if (res.code === 0) {
         currentUserInfo.value = res.data.user
         token.value = res.data.token
-        console.log('ook')
         router.push('/')
-        console.log('ok')
         // 测试
         return toastSuccess(res.message)
       } else {

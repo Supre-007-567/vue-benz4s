@@ -22,6 +22,9 @@ async function handleSubmit(obj) {
     alert('请求失败')
   }
 }
+
+console.log('崔-优化登录的本地存储逻辑');
+
 </script>
 
 <template>

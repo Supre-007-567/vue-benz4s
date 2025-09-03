@@ -94,6 +94,9 @@ onUnmounted(() => {
   window.removeEventListener('resize', onResizeOrLoad)
   window.removeEventListener('load', onResizeOrLoad)
 })
+
+console.log(JSON.parse(localStorage.getItem('my-user-store')).token);
+
 </script>
 
 <template>
