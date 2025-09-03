@@ -20,6 +20,7 @@ export const useUserStore = defineStore(
         console.log('ook')
         router.push('/')
         console.log('ok')
+        // 测试
         return toastSuccess(res.message)
       } else {
         return toastDanger(res.message)
