@@ -2,6 +2,7 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { loginApi, registerApi } from '@/api/user.js'
 import { toastSuccess, toastDanger } from '@/utiles/toast.js'
+import router from '@/router'
 
 export const useUserStore = defineStore(
   'user',
@@ -16,6 +17,9 @@ export const useUserStore = defineStore(
       if (res.code === 0) {
         currentUserInfo.value = res.data.user
         token.value = res.data.token
+        console.log('ook')
+        router.push('/')
+        console.log('ok')
         return toastSuccess(res.message)
       } else {
         return toastDanger(res.message)

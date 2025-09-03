@@ -1,5 +1,20 @@
 <script setup>
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { useUserStore } from '@/stores/user.js'
+const userStore = useUserStore()
+const flag = ref(false)
+if (userStore.token !== '') {
+  flag.value = true
+  console.log('已登陆', userStore.currentUserInfo)
+} else {
+  flag.value = false
+  console.log('未登录')
+}
+
+const handleLogout = () => {
+  flag.value = false
+  userStore.logout()
+}
 
 const isVisible = ref(true) // 控制导航栏是否显示（隐藏时完全移除）
 const isFixed = ref(false) // 新增：控制导航栏是否固定在顶部（原位显示时不固定）
@@ -124,7 +139,12 @@ onUnmounted(() => {
                 <router-link class="nav-link py-2" to="/reserve">预约试驾</router-link>
               </li>
             </ul>
-            <div class="d-flex align-items-center mt-3 mt-lg-0 ms-lg-4">
+            <div v-if="flag" class="d-flex align-items-center mt-3 mt-lg-0 ms-lg-4">
+              <a class="nav-link fw-bold py-1">{{ userStore.currentUserInfo.username }}</a>
+              <span class="mx-2 text-light d-none d-lg-inline">|</span>
+              <a class="nav-link fw-bold py-1" @click="handleLogout">退出</a>
+            </div>
+            <div v-else class="d-flex align-items-center mt-3 mt-lg-0 ms-lg-4">
               <router-link class="nav-link fw-bold py-1" to="/login">登录</router-link>
               <span class="mx-2 text-light d-none d-lg-inline">|</span>
               <router-link class="nav-link fw-bold py-1" to="/login">注册</router-link>
@@ -197,6 +217,7 @@ onUnmounted(() => {
   padding: 8px 0 !important;
   margin: 0 12px;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 .nav-link:hover {
   color: #fff !important;
