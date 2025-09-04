@@ -22,6 +22,8 @@ console.log('carcover:', props)
       </div>
     </div>
   </div>
+  <!-- 测试 -->
+  <!-- <img src="/src/assets/images/detail/EQA_250+_Progressive_Mercedes-Benz/10003.png" alt=""> -->
 </template>
 
 <style scoped>

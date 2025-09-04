@@ -5,8 +5,10 @@ const frames = 34
 const images = Array.from(
   { length: frames },
   (_, i) =>
-    new URL(`/src/assets/images/detail/CLA_180_Progressive_Coupe/${10001 + i}.png`, import.meta.url)
-      .href,
+    new URL(
+      `/src/assets/images/detail/EQA_250+_Progressive_Mercedes-Benz/${10001 + i}.png`,
+      import.meta.url,
+    ).href,
 )
 
 const currentIndex = ref(0)

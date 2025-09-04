@@ -1,110 +1,18 @@
 <script setup>
-import CarViewer from '@/components/CarViewer/CarViewer.vue'
+// import CarViewer from '@/components/CarViewer/CarViewer.vue'
 // import { ref } from 'vue'
 // import { useRouter } from 'vue-router'
 import CarCover from '@/components/CarCover/CarCover.vue'
 import { useCarStore } from '@/stores/car.js'
+// 接收仓库
 const carStore = useCarStore()
 // 获取车辆数据
 carStore.fetchAllCar()
 // getAllCar()
-
-// 车辆数据 - 实际项目可从API获取
-// const carData = ref([
-//   // 轿车系列
-//   {
-//     id: 1,
-//     category: 'sedan',
-//     name: '奔驰 C级',
-//     price: '32.52 - 37.22 万',
-//     coverImage: '/src/assets/images/Abanner01.png',
-//     detailImage1: '',
-//     detailImage2: '',
-//     detailImage3: '',
-//     alt: '奔驰C级轿车',
-//   },
-//   {
-//     id: 2,
-//     category: 'sedan',
-//     name: '奔驰 E级',
-//     price: '44.01 - 56.95 万',
-//     coverImage: '/src/assets/images/Abanner02.jpeg',
-//     detailImage1: '',
-//     detailImage2: '',
-//     detailImage3: '',
-//     alt: '奔驰E级轿车',
-//   },
-//   {
-//     id: 3,
-//     category: 'sedan',
-//     name: '奔驰 S级',
-//     price: '94.68 - 183.88 万',
-//     coverImage: '/src/assets/images/Abanner03.jpg',
-//     detailImage1: '',
-//     detailImage2: '',
-//     detailImage3: '',
-//     alt: '奔驰S级轿车',
-//   },
-
-//   // SUV系列
-//   {
-//     id: 4,
-//     category: 'suv',
-//     name: '奔驰 GLC',
-//     price: '42.78 - 53.13 万',
-//     coverImage: '/src/assets/images/Abanner04.png',
-//     alt: '奔驰GLC SUV',
-//   },
-//   {
-//     id: 5,
-//     category: 'suv',
-//     name: '奔驰 GLE',
-//     price: '69.98 - 88.98 万',
-//     coverImage: '/src/assets/images/Abanner05.jpg',
-//     alt: '奔驰GLE SUV',
-//   },
-//   {
-//     id: 6,
-//     category: 'suv',
-//     name: '奔驰 G级',
-//     price: '142.48 - 189.90 万',
-//     coverImage: '/src/assets/images/Abanner06.jpg',
-//     detailImage1: '',
-//     detailImage2: '',
-//     detailImage3: '',
-//     alt: '奔驰G级 SUV',
-//   },
-
-//   // AMG系列
-//   {
-//     id: 7,
-//     category: 'amg',
-//     name: '奔驰 AMG C 63',
-//     price: '98.88 万',
-//     coverImage: '/src/assets/images/Abanner07.jpg',
-//     detailImage1: '',
-//     detailImage2: '',
-//     detailImage3: '',
-//     alt: '奔驰AMG C 63',
-//   },
-// ])
-
-// 路由实例
-// const router = useRouter()
-
-// 导航到车辆详情页
-// const goToDetail = (carId) => {
-//   router.push(`/cars/detail/${carId}`)
-// }
-
-// 预约试驾路由
-// const goToReservation = (carId) => {
-//   router.push(`/test-drive?carId=${carId}`)
-// }
 </script>
 
 <template>
-  <CarViewer />
+  <!-- <CarViewer /> -->
   <div class="all-car-container bg-white min-vh-100">
     <div class="container py-5">
       <h1 class="text-4xl font-bold text-black mb-5 uppercase tracking-wider">全部车型</h1>
@@ -137,26 +45,6 @@ carStore.fetchAllCar()
                 :key="car.id"
                 class="col-12 col-md-6 col-lg-4"
               >
-                <!-- <div class="car-card border rounded overflow-hidden shadow-sm hover-shadow">
-                  <div class="car-image overflow-hidden">
-                    <img :src="car.coverImage" :alt="car.alt" class="w-100 car-img" />
-                  </div>
-                  <div class="p-3">
-                    <h3 class="car-name">{{ car.name }}</h3>
-                    <p class="car-price">{{ car.price }}</p>
-                    <div class="d-grid gap-2">
-                      <button @click="goToDetail(car.id)" class="btn btn-dark btn-buy">
-                        立即购买
-                      </button>
-                      <button
-                        @click="goToReservation(car.id)"
-                        class="btn btn-outline-dark btn-test"
-                      >
-                        预约试驾
-                      </button>
-                    </div>
-                  </div>
-                </div> -->
                 <CarCover :carData="car"></CarCover>
               </div>
             </div>
@@ -170,26 +58,6 @@ carStore.fetchAllCar()
                 :key="car.id"
                 class="col-12 col-md-6 col-lg-4"
               >
-                <!-- <div class="car-card border rounded overflow-hidden shadow-sm hover-shadow">
-                  <div class="car-image overflow-hidden">
-                    <img :src="car.coverImage" :alt="car.alt" class="w-100 car-img" />
-                  </div>
-                  <div class="p-3">
-                    <h3 class="car-name">{{ car.name }}</h3>
-                    <p class="car-price">{{ car.price }}</p>
-                    <div class="d-grid gap-2">
-                      <button @click="goToDetail(car.id)" class="btn btn-dark btn-buy">
-                        立即购买
-                      </button>
-                      <button
-                        @click="goToReservation(car.id)"
-                        class="btn btn-outline-dark btn-test"
-                      >
-                        预约试驾
-                      </button>
-                    </div>
-                  </div>
-                </div> -->
                 <CarCover :carData="car"></CarCover>
               </div>
             </div>
