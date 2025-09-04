@@ -92,8 +92,6 @@ onUnmounted(() => {
   window.removeEventListener('resize', onResizeOrLoad)
   window.removeEventListener('load', onResizeOrLoad)
 })
-
-
 </script>
 
 <template>
@@ -137,6 +135,9 @@ onUnmounted(() => {
               </li>
               <li class="nav-item">
                 <router-link class="nav-link py-2" to="/reserve">预约试驾</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link py-2" to="/all">所有车型</router-link>
               </li>
             </ul>
             <div v-if="flag" class="d-flex align-items-center mt-3 mt-lg-0 ms-lg-4">

@@ -17,7 +17,7 @@ const router = createRouter({
         {
           path: 'cardetail',
           name: 'carDetail',
-          component: () => import('@/views/CarDetail/CarDetail.vue'), // 汽车详情页 查看汽车详情
+          component: () => import('@/views/CarDetail/CarDetail.vue'), // 汽车详情页 查看汽车详情 + 购买
         },
         {
           path: 'community',
@@ -33,6 +33,11 @@ const router = createRouter({
           path: 'service',
           name: 'service',
           component: () => import('@/views/Service/ServicePage.vue'), //服务页 保修 + 保养 + 预约试驾
+        },
+        {
+          path: 'all',
+          name: 'all',
+          component: () => import('@/views/All/AllPage.vue'), //展示所有车型
         },
       ],
     },

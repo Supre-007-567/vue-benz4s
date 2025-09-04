@@ -129,12 +129,13 @@ const propsData = [
 /* 小于772时 */
 @media (max-width: 768px) {
   .rec-grid-container {
-    grid-template-columns: 1fr; /* 屏幕小于1200px时，改为两列 */
+    grid-template-columns: 1fr; /* 屏幕小于768px时，改为一列 */
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr; /* 五行 */
   }
   .rec-box-big {
     grid-column: 1/2; /* 大盒子只能占一列*/
   }
+  /* ::v-deep 深度控制子组件样式 */
   ::v-deep .rec-box .rec-pic img,
   .rec-box-big .rec-pic img {
     height: 230px;

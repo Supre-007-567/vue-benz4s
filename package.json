@@ -14,6 +14,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@egjs/vue3-view360": "^3.0.4",
     "@google/model-viewer": "^4.1.0",
     "axios": "^1.11.0",
     "bootstrap": "^5.3.8",
