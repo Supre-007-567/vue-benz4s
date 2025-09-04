@@ -15,13 +15,15 @@ carStore.fetchAllCar()
   <!-- <CarViewer /> -->
   <div class="all-car-container bg-white min-vh-100">
     <div class="container py-5">
-      <h1 class="text-4xl font-bold text-black mb-5 uppercase tracking-wider">全部车型</h1>
+      <h1 class="text-4xl font-bold text-black mb-5 uppercase tracking-wider alibabaFont">
+        探索你的Mercedes
+      </h1>
 
       <div class="row d-flex justify-content-between">
         <!-- 侧边栏 -->
         <div class="col-md-2 mb-4">
           <div class="sidebar top-4 bg-white">
-            <ul class="list-unstyled shadow-sm">
+            <ul class="list-unstyled shadow-sm alibabaFont">
               <li><a href="#sedan" class="sidebar-link">轿车</a></li>
               <li><a href="#suv" class="sidebar-link">SUV</a></li>
               <li><a href="#amg" class="sidebar-link">AMG</a></li>

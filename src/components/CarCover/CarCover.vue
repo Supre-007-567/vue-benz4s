@@ -1,9 +1,16 @@
 <script setup>
+import router from '@/router'
+
 // 所有车型页面中的 车辆盒子
 const props = defineProps({
   carData: Object,
 })
-console.log('carcover:', props)
+// console.log('carcover:', props.carData)
+
+const goToBuy = (theId) => {
+  // console.log(theId)
+  router.push(`/cardetail?id=${theId}`)
+}
 </script>
 
 <template>
@@ -12,10 +19,10 @@ console.log('carcover:', props)
       <img :src="carData.coverImage" :alt="carData.alt" class="w-100 car-img" />
     </div>
     <div class="p-3">
-      <h3 class="car-name">{{ carData.name }}</h3>
+      <h3 class="car-name">{{ props.carData.name }}</h3>
       <p class="car-price">{{ carData.price }}</p>
       <div class="d-grid gap-2">
-        <button @click="goToDetail(carData.id)" class="btn btn-dark btn-buy">立即购买</button>
+        <button @click="goToBuy(carData.id)" class="btn btn-dark btn-buy">立即购买</button>
         <button @click="goToReservation(carData.id)" class="btn btn-outline-dark btn-test">
           预约试驾
         </button>
