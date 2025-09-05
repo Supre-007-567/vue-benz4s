@@ -5,7 +5,7 @@ const carData = [
   {
     id: 1,
     category: 'sedan',
-    name: '奔驰 C 180 L 运动版',
+    name: '奔驰 CLA 180 L 运动版',
     price: '325200',
     coverImage: '/src/assets/images/detail/CLA_180_Progressive_Coupe/10031.png',
     detailImage1: '',

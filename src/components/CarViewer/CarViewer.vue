@@ -45,7 +45,7 @@ const onMouseUp = () => {
 
 <template>
   <div
-    class="viewer-wrapper shadow-sm"
+    class="viewer-wrapper"
     @mousedown="onMouseDown"
     @mousemove="onMouseMove"
     @mouseup="onMouseUp"
@@ -69,8 +69,7 @@ const onMouseUp = () => {
   background-image: url('/src/assets/images/detail/bg.webp');
   background-repeat: no-repeat;
   background-size: 100%;
-  /* background-position: 1px 1px; */
-  /* border-bottom: 1px solid #ccc; */
+  /* padding: 0; */
 }
 .title {
   color: #000;
