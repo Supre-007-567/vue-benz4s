@@ -34,6 +34,7 @@ const carInfo = carStore.allCar.find((item) => item.id === theId)
     </CarViewer>
     <!-- 测试 -->
     <div class="container-inner">
+      <!-- 价格盒子 -->
       <div class="shadow-lg row price-box py-4 px-3">
         <div class="col-12 col-md-6 col-lg-6">
           <div class="price">
@@ -49,17 +50,57 @@ const carInfo = carStore.allCar.find((item) => item.id === theId)
             </div>
           </div>
         </div>
-        <div class="btn-box col-12 col-md-6 col-lg-6 d-flex flex-row-reverse gap-3">
+        <div class="btn-box col-12 col-md-6 col-lg-6">
           <button class="btn btn btn-outline-secondary rounded-0 px-5 fw-bold">预约试驾</button>
           <button class="btn btn btn-outline-primary rounded-0 px-5 fw-bold">在线购买</button>
         </div>
       </div>
+      <!-- 设备亮点 -->
+      <div class="highlights my-5">
+        <h1 class="h-title mb-5 font-monospace">设备亮点</h1>
+        <div class="h-box">
+          <div class="h-imgBox">
+            <div class="h-pic">
+              <img src="/src/assets/images/detail/HeightLight/10001.jpg" alt="" />
+            </div>
+            <div class="h-desc"><span>奢华内饰</span></div>
+          </div>
+          <div class="h-imgBox">
+            <div class="h-pic">
+              <img src="/src/assets/images/detail/HeightLight/10002.jpg" alt="" />
+            </div>
+            <div class="h-desc"><span>导航服务预安装</span></div>
+          </div>
+          <div class="h-imgBox">
+            <div class="h-pic">
+              <img src="/src/assets/images/detail/HeightLight/10003.jpg" alt="" />
+            </div>
+            <div class="h-desc"><span>CarPlay集成包</span></div>
+          </div>
+          <div class="h-imgBox">
+            <div class="h-pic">
+              <img src="/src/assets/images/detail/HeightLight/10004.jpg" alt="" />
+            </div>
+            <div class="h-desc"><span>无钥匙启动</span></div>
+          </div>
+        </div>
+      </div>
+      <!-- 奔驰服务 -->
+      <!-- <div class="benz-service">
+        <h1 class="h-title mb-5 font-monospace">Mercedes服务</h1>
+      </div> -->
     </div>
     <!-- <p>{{ carInfo }}</p> -->
   </div>
 </template>
 
 <style scoped>
+/* 价格盒子 */
+.btn-box {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1rem;
+}
 .price-box {
   display: flex;
   justify-content: space-between;
@@ -86,8 +127,82 @@ const carInfo = carStore.allCar.find((item) => item.id === theId)
   font-weight: 700;
   color: #333333;
 }
-
+/* 价格旁边的小图标 */
 .iconFont {
   font-size: 12px;
+  /* cursor: pointer; */
+}
+
+/* 设备亮点 */
+.h-title {
+  color: #333;
+  font-weight: normal;
+  font-size: 38px;
+}
+.highlights .h-box {
+  display: grid;
+  /* 三等分 */
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 230px;
+  width: 100%;
+  gap: 50px;
+  box-sizing: border-box;
+}
+.highlights .h-box .h-imgBox {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.highlights .h-box .h-imgBox img {
+  width: 100%;
+  height: 100%;
+}
+
+.highlights .h-box .h-imgBox .h-desc {
+  color: #333;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* 响应式适配 */
+@media (max-width: 992px) {
+  .btn-box {
+    flex-direction: column;
+  }
+}
+@media (max-width: 768px) {
+  .highlights .h-box {
+    gap: 20px;
+  }
+  .price-box .price .type {
+    font-size: 13px;
+  }
+  .price-box .price .money {
+    font-size: 15px;
+  }
+  .iconFont {
+    font-size: 9px;
+  }
+  .h-title {
+    font-size: 35px;
+  }
+  .highlights .h-box .h-imgBox .h-desc {
+    font-size: 15px;
+  }
+  .highlights .h-box {
+    grid-template-columns: 1fr 1fr;
+    /* grid-template-rows: 250px; */
+    gap: 30px;
+  }
+}
+@media (max-width: 576px) {
+  .highlights .h-box {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 300px);
+  }
+  .highlights .h-box .h-imgBox {
+    gap: 10px;
+  }
 }
 </style>

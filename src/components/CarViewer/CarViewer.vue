@@ -70,6 +70,7 @@ const onMouseUp = () => {
   background-repeat: no-repeat;
   background-size: 100%;
   /* padding: 0; */
+  cursor: ew-resize;
 }
 .title {
   color: #000;
