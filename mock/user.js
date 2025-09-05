@@ -28,6 +28,7 @@ export default [
             id: user.id,
             username: user.username,
             password: user.password,
+            money: 1000000,
           },
         },
       }

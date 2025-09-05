@@ -3,9 +3,15 @@ import { ref } from 'vue'
 import CarViewer from '@/components/CarViewer/CarViewer.vue'
 import { useCarStore } from '@/stores/car.js'
 import { useRoute } from 'vue-router'
+import ConfirmModal from '@/components/BsConfirm/BsConfirm.vue'
+import { toastSuccess, toastDanger } from '@/utiles/toast.js'
+import { useUserStore } from '@/stores/user.js'
+import router from '@/router'
 // 接收仓库
 const carStore = useCarStore()
-console.log(carStore.allCar)
+// console.log(carStore.allCar)
+const userStore = useUserStore()
+//console.log(userStore.currentUserInfo)
 
 // 接收参数
 const route = useRoute()
@@ -24,6 +30,29 @@ if (theId === 1) {
 
 // 查找汽车 - 做后续渲染
 const carInfo = carStore.allCar.find((item) => item.id === theId)
+//console.log('汽车信息', carInfo) //carInfo.price类型为 str 导致扣款不成功
+
+// 在线购买
+const showConfirm = ref(false)
+const confirmContent = ref('')
+const handleBuy = (result) => {
+  if (!userStore.token) {
+    toastDanger('您还未登录，请登录后再成为梅赛德斯车主')
+    router.push({
+      path: '/login',
+      query: { redirect: router.currentRoute.value.fullPath }, // 保存原路径
+    })
+    return
+  }
+
+  confirmContent.value = `您的账户余额为 ${userStore.currentUserInfo.money} RMB，确定购买吗？`
+  showConfirm.value = true
+  if (result === true) {
+    console.log('token', userStore.token)
+    userStore.buyCar(+carInfo.price)
+    return toastSuccess(`购买成功，目前您的余额为 ${userStore.currentUserInfo.money} RMB`)
+  }
+}
 </script>
 <template>
   <div class="detali-container">
@@ -52,7 +81,9 @@ const carInfo = carStore.allCar.find((item) => item.id === theId)
         </div>
         <div class="btn-box col-12 col-md-6 col-lg-6">
           <button class="btn btn btn-outline-secondary rounded-0 px-5 fw-bold">预约试驾</button>
-          <button class="btn btn btn-outline-primary rounded-0 px-5 fw-bold">在线购买</button>
+          <button class="btn btn btn-outline-primary rounded-0 px-5 fw-bold" @click="handleBuy">
+            在线购买
+          </button>
         </div>
       </div>
       <!-- 设备亮点 -->
@@ -90,6 +121,13 @@ const carInfo = carStore.allCar.find((item) => item.id === theId)
         <h1 class="h-title mb-5 font-monospace">Mercedes服务</h1>
       </div> -->
     </div>
+    <!-- 确认框 -->
+    <ConfirmModal
+      v-model:visible="showConfirm"
+      title="温馨提示"
+      :content="confirmContent"
+      @confirm="handleBuy"
+    />
     <!-- <p>{{ carInfo }}</p> -->
   </div>
 </template>

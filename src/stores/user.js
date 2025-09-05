@@ -13,13 +13,20 @@ export const useUserStore = defineStore(
     // 登录
     const fetchLogin = async (payload) => {
       const res = await loginApi(payload)
-      console.log(res)
+      // console.log(res)
       if (res.code === 0) {
         currentUserInfo.value = res.data.user
         token.value = res.data.token
-        router.push('/')
+        // router.push('/')
+        const redirect = router.currentRoute.value.query.redirect || '/'
+        router.push(redirect) // 登录后跳转回去
         // 测试
-        return toastSuccess(res.message)
+        // console.log('userStore:', res.message)
+        // console.log(res);
+
+        // console.log('userStore', currentUserInfo.value.name)
+
+        return toastSuccess(res.message + ` ${currentUserInfo.value.username} 你好！`)
       } else {
         return toastDanger(res.message)
       }
@@ -39,15 +46,21 @@ export const useUserStore = defineStore(
     const logout = () => {
       token.value = ''
       currentUserInfo.value = null
-      // 同时清空持久化存储
+      // 清空本地存储
       localStorage.removeItem('user')
     }
-    return { usersInfo, currentUserInfo, fetchLogin, fetchRegister, token, logout }
+    // 买车扣钱
+    const buyCar = (price) => {
+      currentUserInfo.value.money = currentUserInfo.value.money - price
+      console.log('store计算结果', currentUserInfo.value.money)
+      // console.log('store:账户余额', currentUserInfo.value.money)
+    }
+    return { usersInfo, currentUserInfo, fetchLogin, fetchRegister, token, logout, buyCar }
   },
   {
     persist: {
-      key: 'my-user-store', // 自定义 key
-      storage: localStorage, // 可选，默认 localStorage
+      key: 'my-user-store',
+      storage: localStorage,
       pick: ['token', 'currentUserInfo'],
     },
   },

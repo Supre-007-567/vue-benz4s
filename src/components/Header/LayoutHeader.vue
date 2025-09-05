@@ -1,6 +1,9 @@
 <script setup>
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import { useUserStore } from '@/stores/user.js'
+import ConfirmModal from '@/components/BsConfirm/BsConfirm.vue'
+import { toastSuccess } from '@/utiles/toast.js'
+
 const userStore = useUserStore()
 const flag = ref(false)
 if (userStore.token !== '') {
@@ -9,9 +12,34 @@ if (userStore.token !== '') {
   flag.value = false
 }
 
-const handleLogout = () => {
-  flag.value = false
-  userStore.logout()
+const showConfirm = ref(false)
+
+// 只负责打开弹窗
+// const confirmContent = ref('')
+const openConfirm = () => {
+  // confirmContent.value = content
+  showConfirm.value = true
+}
+// const handleLogout = (result) => {
+//   flag.value = false
+//   // showConfirm.value = true
+//   // showConfirm.value = true
+
+//   console.log('退出登录：', result)
+
+//   userStore.logout()
+// }
+
+// 弹窗点击确认才执行
+const handleLogout = (result) => {
+  showConfirm.value = true
+  if (result) {
+    console.log(result)
+    flag.value = false
+    userStore.logout()
+    showConfirm.value = false
+    toastSuccess('退出成功')
+  }
 }
 
 const isVisible = ref(true) // 控制导航栏是否显示（隐藏时完全移除）
@@ -143,7 +171,7 @@ onUnmounted(() => {
             <div v-if="flag" class="d-flex align-items-center mt-3 mt-lg-0 ms-lg-4">
               <a class="nav-link fw-bold py-1">{{ userStore.currentUserInfo.username }}</a>
               <span class="mx-2 text-light d-none d-lg-inline">|</span>
-              <a class="nav-link fw-bold py-1" @click="handleLogout">退出</a>
+              <a class="nav-link fw-bold py-1" @click="openConfirm">退出</a>
             </div>
             <div v-else class="d-flex align-items-center mt-3 mt-lg-0 ms-lg-4">
               <router-link class="nav-link fw-bold py-1" to="/login">登录</router-link>
@@ -154,10 +182,17 @@ onUnmounted(() => {
         </div>
       </div>
     </nav>
+    <!-- 确认框 -->
   </header>
 
   <!-- 占位符：仅在导航栏固定时显示，避免内容被覆盖 -->
   <div id="header-spacer" aria-hidden="true" :style="{ display: isFixed ? 'block' : 'none' }"></div>
+  <ConfirmModal
+    v-model:visible="showConfirm"
+    title="温馨提示"
+    content="您确认退出登录吗？"
+    @confirm="handleLogout"
+  />
 </template>
 
 <style scoped>
