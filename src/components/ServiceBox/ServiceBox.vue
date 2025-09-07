@@ -8,25 +8,31 @@ import { useRoute } from 'vue-router'
 
 const carStore = useCarStore()
 // 获取车辆数据
+console.log(carStore)
+
 carStore.fetchAllCar()
 // 获取当前路由实例
 const route = useRoute()
+console.log(useRoute)
 
 // 拿到查询参数 id（首次加载时获取）
 const id = +route.query.id
 // console.log('查询参数 id:', id)
 // 获取父组件的props
+console.log(id)
+
 const props = defineProps({
     title: String,
     type: String,
     formTitle:String
 })
-
+console.log(props)
 
 // 响应式数据
 const selectedModel = ref('')
 const selectedDate = ref(null)
-
+console.log(selectedModel)
+console.log(selectedDate)
 // 禁用过去的日期
 const disablePastDates = (date) => {
   // 只能选择今天及未来7天内的日期
@@ -38,6 +44,7 @@ const disablePastDates = (date) => {
   
   return date < today || date > nextWeek
 }
+
 
 // 表单提交处理
 const handleSubmit = () => {
