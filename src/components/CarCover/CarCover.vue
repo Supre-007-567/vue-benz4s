@@ -4,14 +4,9 @@ import { computed } from 'vue'
 import { useCarStore } from '@/stores/car.js'
 import { useUserStore } from '@/stores/user.js'
 import { toastSuccess, toastDanger } from '@/utiles/toast.js'
-import { useRoute } from 'vue-router'
 
-// 获取当前路由实例
-const route = useRoute()
 
-// 拿到查询参数 id（首次加载时获取）
-const id = route.query.id
-console.log('查询参数 id:', id)
+
 // import ConfirmModal from '@/components/BsConfirm/BsConfirm.vue'
 // import { useUserStore } from '@/stores/user';
 // 接受仓库
@@ -56,8 +51,8 @@ const goToBuy = (theId) => {
   router.push(`/cardetail?id=${theId}`)
 }
 
-const goToReservation = (theId) =>{
-  router.push(`/reserve?id=${theId}`)
+const goToReservation = (carData) =>{
+  router.push(`/reserve?id=${carData}`)
 }
 </script>
 
@@ -74,7 +69,7 @@ const goToReservation = (theId) =>{
       <p class="car-price">{{ carData.price }}</p>
       <div class="d-grid gap-2">
         <button @click="goToBuy(carData.id)" class="btn btn-dark btn-buy">立即购买</button>
-        <button @click="goToReservation(carData.id)" class="btn btn-outline-dark btn-test">
+        <button @click="goToReservation(carData)" class="btn btn-outline-dark btn-test">
           预约试驾
         </button>
       </div>

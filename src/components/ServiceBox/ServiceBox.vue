@@ -13,7 +13,7 @@ carStore.fetchAllCar()
 const route = useRoute()
 
 // 拿到查询参数 id（首次加载时获取）
-const id = +route.query.id
+const currentCar = JSON.parse(route.query.carData)
 // console.log('查询参数 id:', id)
 // 获取父组件的props
 const props = defineProps({
@@ -21,10 +21,7 @@ const props = defineProps({
     type: String,
     formTitle:String
 })
-const currentCar = carStore.allCar.find(item=>item.id===id)
-console.log(carStore.allCar);
 
-console.log("sBox:",currentCar);
 
 // 响应式数据
 const selectedModel = ref('')
@@ -56,6 +53,16 @@ const handleSubmit = () => {
 const getCarModelText = (value) => {
   return value.name
 }
+
+// 从所有车型页面跳转过来反显名字
+function returnCarInfo() {
+// const currentCar = carStore.allCar.find(item=>item.id===id)
+// console.log(carStore.allCar);
+
+// console.log("sBox:",currentCar);
+selectedModel.value = currentCar.name
+}
+returnCarInfo()
 </script>
 
 <template>
