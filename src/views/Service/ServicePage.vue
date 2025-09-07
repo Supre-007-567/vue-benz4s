@@ -3,6 +3,7 @@ import { ref } from 'vue'
 // import DatePicker from 'vue3-datepicker'
 import VueDatePicker from '@vuepic/vue-datepicker';
 import { useCarStore } from "@/stores/car.js";
+import { toastSuccess } from "@/utiles/toast.js";
 const carStore = useCarStore()
 // 获取车辆数据
 carStore.fetchAllCar()
@@ -26,25 +27,16 @@ const disablePastDates = (date) => {
 // 表单提交处理
 const handleSubmit = () => {
   // 在实际应用中，这里会发送API请求
-  alert(`预约成功！\n车型: ${getCarModelText(selectedModel.value)}\n日期: ${selectedDate.value.toLocaleDateString()}`)
-  
+  // alert(`预约成功！\n车型: ${getCarModelText(selectedModel.value)}\n日期: ${selectedDate.value.toLocaleDateString()}`)
+  toastSuccess(`预约成功！\n车型: ${getCarModelText(selectedModel.value)}\n日期: ${selectedDate.value.toLocaleDateString()}`)
   // 重置表单
-  // selectedModel.value = ''
-  // selectedDate.value = null
+  selectedModel.value = ''
+  selectedDate.value = null
 }
 
 // 根据车型值获取显示文本
 const getCarModelText = (value) => {
-  const models = {
-    '1': '奔驰 C级',
-    '2': '宝马 3系',
-    '3': '奥迪 A4L',
-    '4': '特斯拉 Model 3',
-    '5': '本田 雅阁',
-    '6': '丰田 凯美瑞',
-    '7': '其他车型'
-  }
-  return models[value] || '未知车型'
+  return value.name
 }
 </script>
 
@@ -79,14 +71,7 @@ const getCarModelText = (value) => {
               required
             >
               <option value="" disabled selected>请选择车型</option>
-              <!-- <option value="1">奔驰 C级</option>
-              <option value="2">宝马 3系</option>
-              <option value="3">奥迪 A4L</option>
-              <option value="4">特斯拉 Model 3</option>
-              <option value="5">本田 雅阁</option>
-              <option value="6">丰田 凯美瑞</option>
-              <option value="7">其他车型</option> -->
-              <option value="2">宝马 3系</option>
+              <option v-for="item in carStore.allCar" :key="item.id" :value="item">{{item.name}}</option>
 
             </select>
           </div>
@@ -101,7 +86,7 @@ const getCarModelText = (value) => {
                 id="appointmentDate"
                 v-model="selectedDate"
                 :class="'form-control form-control-lg w-full'"
-                format="YYYY-MM-DD"
+                format="yyyy-MM-dd"
                 :disabled-date="disablePastDates"
                 placeholder="点击选择日期"
                 required
