@@ -22,7 +22,7 @@ const router = createRouter({
         {
           path: 'collect',
           name: 'collect',
-          component: () => import('@/views/collect/collectPage.vue'), // 用户社区页 用户发布信息交流
+          component: () => import('@/views/Collect/CollectPage.vue'), // 用户社区页 用户发布信息交流
         },
         {
           path: 'reserve',

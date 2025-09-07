@@ -69,7 +69,7 @@ const setSpacerHeight = () => {
 const applyVisibility = () => {
   const scrollY = window.scrollY || document.documentElement.scrollTop || 0
 
-  // 逻辑拆解：
+  // 逻辑：
   // - 滚动到顶部（scrollY = 0）：显示导航栏，不固定（原位）
   // - 滚动在“顶部~推荐区顶部”之间（0 < scrollY < recommendTop - headerHeight）：显示导航栏，不固定（原位）
   // - 滚动到“推荐区顶部及以下”（scrollY >= recommendTop - headerHeight）：显示导航栏，固定在顶部
@@ -156,7 +156,7 @@ onUnmounted(() => {
                 <router-link class="nav-link py-2" to="/home">首页</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link py-2" to="/service">服务</router-link>
+                <router-link class="nav-link py-2" to="/service">保养</router-link>
               </li>
               <li class="nav-item">
                 <router-link class="nav-link py-2" to="/reserve">预约试驾</router-link>
