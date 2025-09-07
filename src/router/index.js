@@ -20,9 +20,9 @@ const router = createRouter({
           component: () => import('@/views/CarDetail/CarDetail.vue'), // 汽车详情页 查看汽车详情 + 购买
         },
         {
-          path: 'community',
-          name: 'community',
-          component: () => import('@/views/Community/CommunityPage.vue'), // 用户社区页 用户发布信息交流
+          path: 'collect',
+          name: 'collect',
+          component: () => import('@/views/collect/collectPage.vue'), // 用户社区页 用户发布信息交流
         },
         {
           path: 'reserve',

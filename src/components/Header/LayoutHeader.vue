@@ -162,7 +162,7 @@ onUnmounted(() => {
                 <router-link class="nav-link py-2" to="/reserve">预约试驾</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link py-2" to="/community">社区</router-link>
+                <router-link class="nav-link py-2" to="/collect">我的收藏</router-link>
               </li>
               <li class="nav-item">
                 <router-link class="nav-link py-2" to="/all">所有车型</router-link>

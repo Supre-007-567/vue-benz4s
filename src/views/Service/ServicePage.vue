@@ -1,14 +1,14 @@
 <script setup>
-import ServiceBox from "@/components/ServiceBox/ServiceBox.vue";
-
+import ServiceBox from '@/components/ServiceBox/ServiceBox.vue'
 </script>
 
 <template>
-  <ServiceBox title="Mercedes保养服务" type="保养" formTitle="预约表单"/>
+  <ServiceBox
+    title="Mercedes保养服务"
+    type="保养"
+    formTitle="预约表单"
+    titleImg="/src/assets/images/I-01.avif"
+  />
 </template>
 
-
-
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -14,11 +14,20 @@ carStore.fetchAllCar()
 <template>
   <!-- <CarViewer /> -->
   <div class="all-car-container bg-white min-vh-100">
+    <div class="page-header py-4 mb-4 bg-white border-bottom">
+      <div class="container title-box">
+        <div class="text-box">
+          <h1 class="mb-3 text-4xl font-bold text-black uppercase tracking-wider alibabaFont">
+            探索你的Mercedes
+          </h1>
+          <p class="lead text-muted">奢华、运动和性能的完美融合：探索我们的最新车型</p>
+        </div>
+        <div class="pic">
+          <img src="/src/assets/images/I-04.webp" alt="" />
+        </div>
+      </div>
+    </div>
     <div class="container py-5">
-      <h1 class="text-4xl font-bold text-black mb-5 uppercase tracking-wider alibabaFont">
-        探索你的Mercedes
-      </h1>
-
       <div class="row d-flex justify-content-between">
         <!-- 侧边栏 -->
         <div class="col-md-2 mb-4">
@@ -85,6 +94,20 @@ carStore.fetchAllCar()
 </template>
 
 <style scoped>
+.page-header h1 {
+  letter-spacing: 1px;
+}
+.title-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title-box .pic img {
+  width: 300px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 2px;
+}
 /* 侧边栏样式 */
 .sidebar {
   position: sticky;
