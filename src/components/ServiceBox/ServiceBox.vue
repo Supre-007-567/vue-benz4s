@@ -4,21 +4,22 @@ import VueDatePicker from '@vuepic/vue-datepicker'
 import { useCarStore } from '@/stores/car.js'
 import { toastSuccess } from '@/utiles/toast.js'
 import { useRoute } from 'vue-router'
+import TitleBox from '@/components/TitleBox/TitleBox.vue'
 
 const carStore = useCarStore()
 // 获取车辆数据
-console.log(carStore)
+// console.log(carStore)
 
 carStore.fetchAllCar()
 // 获取当前路由实例
 const route = useRoute()
-console.log(useRoute)
+// console.log(useRoute)
 
 // 拿到查询参数 id（首次加载时获取）
 const id = +route.query.id
 // console.log('查询参数 id:', id)
 // 获取父组件的props
-console.log(id)
+// console.log(id)
 
 const props = defineProps({
   title: String,
@@ -26,13 +27,13 @@ const props = defineProps({
   formTitle: String,
   titleImg: String,
 })
-console.log(props) // console.log(props)
+// console.log(props) // console.log(props)
 
 // 响应式数据
 const selectedModel = ref('')
 const selectedDate = ref(null)
-console.log(selectedModel)
-console.log(selectedDate)
+// console.log(selectedModel)
+// console.log(selectedDate)
 // 禁用过去的日期
 const disablePastDates = (date) => {
   // 只能选择今天及未来7天内的日期
@@ -87,21 +88,11 @@ const handleChange = () => {
 <template>
   <div class="service-page bg-light">
     <!-- 页面标题区域 -->
-    <div class="page-header py-4 mb-4 bg-white border-bottom">
-      <div class="container title-box">
-        <div class="text-box">
-          <h1 class="mb-3 text-4xl font-bold text-black uppercase tracking-wider alibabaFont">
-            {{ props.title }}
-          </h1>
-          <p class="lead text-muted">
-            选择您的车型和方便的时间，我们将为您的爱车提供{{ props.type }}服务
-          </p>
-        </div>
-        <div class="pic">
-          <img :src="props.titleImg" alt="" />
-        </div>
-      </div>
-    </div>
+    <TitleBox
+      :title="props.title"
+      :desc="`选择您的车型和方便的时间，我们将为您的爱车提供${props.type}服务`"
+      :titleImage="props.titleImg"
+    ></TitleBox>
 
     <!-- 表单卡片 -->
     <div class="container py-5 mb-5">
@@ -186,22 +177,11 @@ const handleChange = () => {
   display: flex;
   flex-direction: column;
 }
-.title-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 .select-ipt {
   font-size: 16px;
 }
 
-.title-box .pic img {
-  width: 300px;
-  height: 140px;
-  object-fit: cover;
-  border-radius: 2px;
-}
 .car-preview-box img {
   width: 636px;
   height: 477px;

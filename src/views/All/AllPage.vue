@@ -4,6 +4,7 @@
 // import { useRouter } from 'vue-router'
 import CarCover from '@/components/CarCover/CarCover.vue'
 import { useCarStore } from '@/stores/car.js'
+import TitleBox from '@/components/TitleBox/TitleBox.vue'
 // 接收仓库
 const carStore = useCarStore()
 // 获取车辆数据
@@ -14,7 +15,7 @@ carStore.fetchAllCar()
 <template>
   <!-- <CarViewer /> -->
   <div class="all-car-container bg-white min-vh-100">
-    <div class="page-header py-4 mb-4 bg-white border-bottom">
+    <!-- <div class="page-header py-4 mb-4 bg-white border-bottom">
       <div class="container title-box">
         <div class="text-box">
           <h1 class="mb-3 text-4xl font-bold text-black uppercase tracking-wider alibabaFont">
@@ -26,7 +27,12 @@ carStore.fetchAllCar()
           <img src="/src/assets/images/I-04.webp" alt="" />
         </div>
       </div>
-    </div>
+    </div> -->
+    <TitleBox
+      title="探索你的Mercedes"
+      desc="奢华、运动和性能的完美融合：探索我们的最新车型"
+      titleImage="/src/assets/images/I-04.webp"
+    ></TitleBox>
     <div class="container py-5">
       <div class="row d-flex justify-content-between">
         <!-- 侧边栏 -->

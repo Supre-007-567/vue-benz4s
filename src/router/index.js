@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
+import { useUserStore } from '@/stores/user.js'
+import { toastDanger } from '@/utiles/toast.js'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -43,6 +44,27 @@ const router = createRouter({
     },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('@/views/NotFound.vue') }, //404
   ],
+})
+
+// 路由守卫
+router.beforeEach((to, from, next) => {
+  const userStore = useUserStore()
+
+  // 需要登录的路由
+  const authPages = ['collect', 'reserve', 'service']
+
+  // 如果去的是需要权限的页面，且没登录
+  if (authPages.includes(to.name) && !userStore.token) {
+    // 如果当前目标不是 login，才跳转，避免死循环
+    if (to.name !== 'Login') {
+      toastDanger('请登录后查看此页面 ')
+      next({ name: 'Login', query: { redirect: to.fullPath } })
+    } else {
+      next() // 已经在登录页，放行
+    }
+  } else {
+    next() // 其他页面直接放行
+  }
 })
 
 export default router

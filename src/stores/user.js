@@ -23,11 +23,6 @@ export const useUserStore = defineStore(
         // router.push('/')
         const redirect = router.currentRoute.value.query.redirect || '/'
         router.push(redirect) // 登录后跳转回去
-        // 测试
-        // console.log('userStore:', res.message)
-        // console.log(res);
-
-        // console.log('userStore', currentUserInfo.value.name)
 
         return toastSuccess(res.message + ` ${currentUserInfo.value.username} 你好！`)
       } else {
