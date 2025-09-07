@@ -3,17 +3,28 @@ import { ref } from 'vue'
 import VueDatePicker from '@vuepic/vue-datepicker';
 import { useCarStore } from "@/stores/car.js";
 import { toastSuccess } from "@/utiles/toast.js";
+import { useRoute } from 'vue-router'
+
+
+const carStore = useCarStore()
+// 获取车辆数据
+carStore.fetchAllCar()
+// 获取当前路由实例
+const route = useRoute()
+
+// 拿到查询参数 id（首次加载时获取）
+const id = +route.query.id
+// console.log('查询参数 id:', id)
 // 获取父组件的props
 const props = defineProps({
     title: String,
     type: String,
     formTitle:String
 })
+const currentCar = carStore.allCar.find(item=>item.id===id)
+console.log(carStore.allCar);
 
-
-const carStore = useCarStore()
-// 获取车辆数据
-carStore.fetchAllCar()
+console.log("sBox:",currentCar);
 
 // 响应式数据
 const selectedModel = ref('')

@@ -4,7 +4,14 @@ import { computed } from 'vue'
 import { useCarStore } from '@/stores/car.js'
 import { useUserStore } from '@/stores/user.js'
 import { toastSuccess, toastDanger } from '@/utiles/toast.js'
+import { useRoute } from 'vue-router'
 
+// 获取当前路由实例
+const route = useRoute()
+
+// 拿到查询参数 id（首次加载时获取）
+const id = route.query.id
+console.log('查询参数 id:', id)
 // import ConfirmModal from '@/components/BsConfirm/BsConfirm.vue'
 // import { useUserStore } from '@/stores/user';
 // 接受仓库
