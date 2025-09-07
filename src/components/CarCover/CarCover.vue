@@ -48,6 +48,10 @@ const goToBuy = (theId) => {
   // console.log(theId)
   router.push(`/cardetail?id=${theId}`)
 }
+
+const goToReservation = (theId) =>{
+  router.push(`/reserve?id=${theId}`)
+}
 </script>
 
 <template>

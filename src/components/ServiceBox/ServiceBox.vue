@@ -5,7 +5,9 @@ import { useCarStore } from "@/stores/car.js";
 import { toastSuccess } from "@/utiles/toast.js";
 // 获取父组件的props
 const props = defineProps({
-    title:String
+    title: String,
+    type: String,
+    formTitle:String
 })
 
 
@@ -51,7 +53,7 @@ const getCarModelText = (value) => {
     <div class="page-header bg-primary text-white py-8">
       <div class="container-inner">
         <h1 class="display-4 fw-bold mb-2">{{props.title}}</h1>
-        <p class="lead alibabaFont">选择您的车型和方便的时间，我们将为您的爱车提供全方位保养</p>
+        <p class="lead alibabaFont">选择您的车型和方便的时间，我们将为您的爱车提供{{props.type}}服务</p>
       </div>
     </div>
 
@@ -59,7 +61,7 @@ const getCarModelText = (value) => {
     <div class="service-box container-inner py-8">
       <div class="form-card bg-white rounded-2xl shadow-lg p-6 md:p-8 max-w-2xl mx-auto transform transition-all duration-300 hover:shadow-xl">
         <h2 class="alibabaFont text-2xl md:text-3xl font-bold text-gray-800 mb-6 pb-3 border-b border-gray-100">
-          预约保养
+          {{props.formTitle}}
         </h2>
         
         <form @submit.prevent="handleSubmit" class="space-y-6">
@@ -156,7 +158,7 @@ const getCarModelText = (value) => {
 
 /* 表单卡片样式 */
 .form-card {
-  margin-top: -40px;
+  /* margin-top: -40px; */
   position: relative;
   z-index: 10;
 }
