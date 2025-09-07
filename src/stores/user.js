@@ -1,12 +1,15 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { loginApi, registerApi } from '@/api/user.js'
+import { returnCollectApi } from '@/api/car.js'
 import { toastSuccess, toastDanger } from '@/utiles/toast.js'
+import { useCarStore } from '@/stores/car.js'
 import router from '@/router'
 
 export const useUserStore = defineStore(
   'user',
   () => {
+    const carStore = useCarStore()
     const usersInfo = ref([])
     const currentUserInfo = ref({})
     const token = ref('')
@@ -48,6 +51,9 @@ export const useUserStore = defineStore(
       currentUserInfo.value = null
       // 清空本地存储
       localStorage.removeItem('user')
+      // 清空收藏夹
+      returnCollectApi()
+      carStore.allCar.forEach((item) => (item.isCollect = false))
     }
     // 买车扣钱
     const buyCar = (price) => {

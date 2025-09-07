@@ -11,6 +11,7 @@ const carData = [
     detailImage1: '',
     detailImage2: '',
     detailImage3: '',
+    isCollect: false,
     alt: '奔驰C 180 L 运动版',
   },
   {
@@ -22,6 +23,7 @@ const carData = [
     detailImage1: '',
     detailImage2: '',
     detailImage3: '',
+    isCollect: false,
     alt: '奔驰 E 200 L 豪华版',
   },
   {
@@ -33,6 +35,7 @@ const carData = [
     detailImage1: '',
     detailImage2: '',
     detailImage3: '',
+    isCollect: false,
     alt: '奔驰E 300 L 豪华型',
   },
   {
@@ -40,10 +43,11 @@ const carData = [
     category: 'sedan',
     name: '奔驰 E 260 L 运动版',
     price: '419800',
-    coverImage: '/src/assets/images/g63/001-g63.jpg',
+    coverImage: '/src/assets/images/D-01.jpeg',
     detailImage1: '',
     detailImage2: '',
     detailImage3: '',
+    isCollect: false,
     alt: '奔驰E 260 L 运动版',
   },
   {
@@ -55,6 +59,7 @@ const carData = [
     detailImage1: '',
     detailImage2: '',
     detailImage3: '',
+    isCollect: false,
     alt: '奔驰S 500 L 4MATIC',
   },
   {
@@ -66,6 +71,7 @@ const carData = [
     detailImage1: '',
     detailImage2: '',
     detailImage3: '',
+    isCollect: false,
     alt: '奔驰EQS 580 4MATIC',
   },
 
@@ -79,6 +85,7 @@ const carData = [
     detailImage1: '',
     detailImage2: '',
     detailImage3: '',
+    isCollect: false,
     alt: '奔驰GLC 260 L 4MATIC',
   },
   {
@@ -90,6 +97,7 @@ const carData = [
     detailImage1: '',
     detailImage2: '',
     detailImage3: '',
+    isCollect: false,
     alt: '奔驰GLC 300 L 4MATIC',
   },
   {
@@ -101,6 +109,7 @@ const carData = [
     detailImage1: '',
     detailImage2: '',
     detailImage3: '',
+    isCollect: false,
     alt: '奔驰GLE 350 4MATIC',
   },
   {
@@ -112,6 +121,7 @@ const carData = [
     detailImage1: '',
     detailImage2: '',
     detailImage3: '',
+    isCollect: false,
     alt: '奔驰GLS 480 4MATIC',
   },
   {
@@ -123,6 +133,7 @@ const carData = [
     detailImage1: '',
     detailImage2: '',
     detailImage3: '',
+    isCollect: false,
     alt: '奔驰G 500',
   },
   {
@@ -134,6 +145,7 @@ const carData = [
     detailImage1: '',
     detailImage2: '',
     detailImage3: '',
+    isCollect: false,
     alt: '奔驰EQC 400 4MATIC',
   },
 
@@ -147,6 +159,7 @@ const carData = [
     detailImage1: '',
     detailImage2: '',
     detailImage3: '',
+    isCollect: false,
     alt: '奔驰AMG C 63 S',
   },
   {
@@ -158,6 +171,7 @@ const carData = [
     detailImage1: '',
     detailImage2: '',
     detailImage3: '',
+    isCollect: false,
     alt: '奔驰AMG E 53 4MATIC+',
   },
   {
@@ -169,6 +183,7 @@ const carData = [
     detailImage1: '',
     detailImage2: '',
     detailImage3: '',
+    isCollect: false,
     alt: '奔驰AMG GT 63 S 4MATIC+',
   },
   {
@@ -180,6 +195,7 @@ const carData = [
     detailImage1: '',
     detailImage2: '',
     detailImage3: '',
+    isCollect: false,
     alt: '奔驰AMG G 63',
   },
   {
@@ -191,6 +207,7 @@ const carData = [
     detailImage1: '',
     detailImage2: '',
     detailImage3: '',
+    isCollect: false,
     alt: '奔驰AMG CLA 35 4MATIC',
   },
   {
@@ -202,6 +219,7 @@ const carData = [
     detailImage1: '',
     detailImage2: '',
     detailImage3: '',
+    isCollect: false,
     alt: '奔驰AMG A 45 S 4MATIC+',
   },
 ]
@@ -218,6 +236,48 @@ export default [
         data: {
           carData,
         },
+      }
+    },
+  },
+  // 收藏/取消收藏车辆
+  {
+    url: '/api/car/collect',
+    method: 'post',
+    response: (request) => {
+      // 通过 request 参数获取请求信息
+      // 1. 从请求体中获取 id（POST 数据通常在 request.body 中）
+      const { id } = request.body // 假设前端传参格式为 { id: 1 }
+
+      // 2. 查找对应的车辆
+      const currentCar = carData.find((item) => item.id === id)
+      // 取反
+      currentCar.isCollect = !currentCar.isCollect
+      // 3. 根据查找结果返回响应
+      if (currentCar) {
+        return {
+          code: 0,
+          message: `处理收藏成功：${currentCar.name}`,
+          data: { id: currentCar.id, isCollect: currentCar.isCollect }, // 可返回额外数据
+        }
+      } else {
+        return {
+          code: -1,
+          message: `未找到 ID 为 ${id} 的车辆`,
+        }
+      }
+    },
+  },
+  // 初始化收藏
+  {
+    url: '/api/car/returnCollect',
+    method: 'post',
+    response: () => {
+      carData.forEach((item) => {
+        item.isCollect = false
+      })
+      return {
+        code: 0,
+        message: '清空收藏夹成功',
       }
     },
   },
