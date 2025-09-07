@@ -16,6 +16,7 @@
   "dependencies": {
     "@egjs/vue3-view360": "^3.0.4",
     "@google/model-viewer": "^4.1.0",
+    "@vuepic/vue-datepicker": "^11.0.2",
     "axios": "^1.11.0",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",

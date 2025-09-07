@@ -6,6 +6,9 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import '@google/model-viewer'
 import './assets/style/font.css'
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
+
 
 import App from './App.vue'
 import router from './router'
@@ -17,5 +20,5 @@ const app = createApp(App)
 
 app.use(pinia)
 app.use(router)
-
+app.component('VueDatePicker', VueDatePicker);
 app.mount('#app')
