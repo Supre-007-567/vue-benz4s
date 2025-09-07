@@ -13,7 +13,7 @@ carStore.fetchAllCar()
 const route = useRoute()
 
 // 拿到查询参数 id（首次加载时获取）
-const currentCar = JSON.parse(route.query.carData)
+const id = +route.query.id
 // console.log('查询参数 id:', id)
 // 获取父组件的props
 const props = defineProps({
@@ -56,11 +56,11 @@ const getCarModelText = (value) => {
 
 // 从所有车型页面跳转过来反显名字
 function returnCarInfo() {
-// const currentCar = carStore.allCar.find(item=>item.id===id)
+const currentCar = carStore.allCar.find(item=>item.id===id)
 // console.log(carStore.allCar);
 
-// console.log("sBox:",currentCar);
-selectedModel.value = currentCar.name
+console.log("sBox:",currentCar);
+selectedModel.value = currentCar.id
 }
 returnCarInfo()
 </script>
@@ -96,7 +96,7 @@ returnCarInfo()
               required
             >
               <option value="" disabled selected>请选择车型</option>
-              <option v-for="item in carStore.allCar" :key="item.id" :value="item">{{item.name}}</option>
+              <option v-for="item in carStore.allCar" :key="item.id" :value="item.id">{{item.name}}</option>
 
             </select>
           </div>

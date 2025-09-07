@@ -69,7 +69,7 @@ const goToReservation = (carData) =>{
       <p class="car-price">{{ carData.price }}</p>
       <div class="d-grid gap-2">
         <button @click="goToBuy(carData.id)" class="btn btn-dark btn-buy">立即购买</button>
-        <button @click="goToReservation(carData)" class="btn btn-outline-dark btn-test">
+        <button @click="goToReservation(carData.id)" class="btn btn-outline-dark btn-test">
           预约试驾
         </button>
       </div>
