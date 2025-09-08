@@ -52,14 +52,18 @@ const onMouseUp = () => {
     @mouseleave="onMouseUp"
   >
     <img :src="images[currentIndex]" style="width: 100%; height: 100%; object-fit: contain" />
-    <h1 class="title alibabaFont">
-      <slot name="title"></slot>
-    </h1>
+    <div class="title-box">
+      <h1 class="title alibabaFont">
+        <slot name="title"></slot>
+      </h1>
+      <p class="lead text-muted"><slot name="desc"></slot></p>
+    </div>
+
     <img src="/src/assets//images/detail/360.png" class="rotate" alt="360旋转" />
   </div>
 </template>
 
-<style>
+<style scoped>
 .viewer-wrapper {
   position: relative;
   width: 100%;
@@ -72,7 +76,7 @@ const onMouseUp = () => {
   /* padding: 0; */
   cursor: ew-resize;
 }
-.title {
+.title-box {
   color: #000;
   position: absolute;
   top: 48px;

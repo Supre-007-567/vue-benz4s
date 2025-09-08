@@ -12,7 +12,7 @@ const carStore = useCarStore()
 // console.log(carStore.allCar)
 const userStore = useUserStore()
 //console.log(userStore.currentUserInfo)
-
+carStore.fetchAllCar()
 // 接收参数
 const route = useRoute()
 // console.log('theId', route.query.id)
@@ -59,6 +59,9 @@ const handleBuy = (result) => {
     <CarViewer :folder="folder">
       <template #title>
         {{ carInfo.name }}
+      </template>
+      <template #desc>
+        {{ carInfo.desc }}
       </template>
     </CarViewer>
     <!-- 测试 -->

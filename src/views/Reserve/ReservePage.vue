@@ -1,5 +1,9 @@
 <script setup>
 import ServiceBox from '@/components/ServiceBox/ServiceBox.vue'
+import { onMounted } from 'vue'
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
 </script>
 <template>
   <div>

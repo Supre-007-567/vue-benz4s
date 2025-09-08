@@ -185,4 +185,11 @@ carStore.fetchAllCar()
 html {
   scroll-behavior: smooth;
 }
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+}
 </style>

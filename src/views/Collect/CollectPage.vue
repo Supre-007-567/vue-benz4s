@@ -1,31 +1,84 @@
 <script setup>
 import { useCarStore } from '@/stores/car.js'
-import { ref } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import TitleBox from '@/components/TitleBox/TitleBox.vue'
+import router from '@/router'
+import { toastSuccess } from '@/utiles/toast.js'
+import BsConfirm from '@/components/BsConfirm/BsConfirm.vue'
 const carStore = useCarStore()
 // console.log(carStore.allCar)
-const isEmpty = ref(true)
+// 收藏数据是否为空
+// const isEmpty = ref(true)
+const isEmpty = computed(() => {
+  if (collectData.value.length > 0) {
+    return false
+  } else {
+    return true
+  }
+})
 const collectData = ref([])
-
+// 获取收藏数据
 const getCollectData = async () => {
   await carStore.fetchAllCar()
   collectData.value = carStore.allCar.filter((item) => item.isCollect === true)
-  console.log('collect:', collectData.value)
-  console.log(collectData.value.length)
-
-  if (collectData.value.length > 0) {
-    isEmpty.value = false
-  }
+  console.log('collect结果:', collectData.value)
+  // console.log(collectData.value.length)
 }
 getCollectData()
+
+// 立即购买
+const goToBuy = (theId) => {
+  console.log('ok')
+
+  router.push(`/cardetail?id=${theId}`)
+}
+// 预约试驾
+const goToReservation = (theId) => {
+  console.log('ok')
+
+  // router.push(`/cardetail?id=${theId}`)
+  router.push(`/reserve?id=${theId}`)
+}
+
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
+
+// 取消收藏
+const currentId = ref(null) // 保存当前要取消的车辆ID
+// 打开弹窗
+const openCancelConfirm = (theId) => {
+  currentId.value = theId
+  showConfirm.value = true
+}
+const showConfirm = ref(false)
+const cancelCollect = async (result) => {
+  // showConfirm.value = true
+  if (result === true && currentId.value) {
+    await carStore.fetchCollect(currentId.value)
+    setTimeout(() => {
+      toastSuccess('取消收藏成功')
+      getCollectData()
+    }, 500)
+    currentId.value = null // 清理掉
+  }
+}
 </script>
 
 <template>
+  <!-- 弹框 -->
+  <BsConfirm
+    v-model:visible="showConfirm"
+    title="温馨提示"
+    content="确定取消收藏吗？"
+    @confirm="cancelCollect"
+  />
   <TitleBox
     title="我的Mercedes典藏"
     desc="为你心动的每一款座驾留驻身边，打造你的私人车库"
     titleImage="/src/assets/images/I-05.png"
   />
+  <!-- 数据为空 -->
   <div
     v-if="isEmpty"
     class="alert empty-box alert-secondary border-0 text-center py-5"
@@ -44,19 +97,19 @@ getCollectData()
       <div class="pic">
         <img :src="item.coverImage" alt="Mercedes Car" />
         <!-- 删除按钮放在图片右上角 -->
-        <button class="delete-btn" title="取消收藏">×</button>
+        <button class="delete-btn" title="取消收藏" @click="openCancelConfirm(item.id)">×</button>
       </div>
 
       <!-- 车辆信息 -->
       <div class="car-info">
         <h3 class="car-name">{{ item.name }}</h3>
-        <p class="car-desc">动感优雅，科技与豪华的完美平衡</p>
+        <p class="car-desc">{{ item.desc }}</p>
       </div>
 
       <!-- 操作按钮 -->
       <div class="btn-box">
-        <button class="btn-buy">立即购买</button>
-        <button class="btn-drive">预约试驾</button>
+        <button class="btn-buy" @click="goToBuy(item.id)">立即购买</button>
+        <button class="btn-drive" @click="goToReservation(item.id)">预约试驾</button>
       </div>
     </div>
   </div>
