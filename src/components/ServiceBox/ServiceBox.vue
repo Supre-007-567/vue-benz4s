@@ -8,32 +8,27 @@ import TitleBox from '@/components/TitleBox/TitleBox.vue'
 
 const carStore = useCarStore()
 // 获取车辆数据
-// console.log(carStore)
 
 carStore.fetchAllCar()
 // 获取当前路由实例
 const route = useRoute()
-// console.log(useRoute)
 
 // 拿到查询参数 id（首次加载时获取）
 const id = +route.query.id
-// console.log('查询参数 id:', id)
-// 获取父组件的props
-// console.log(id)
 
 const props = defineProps({
   title: String,
   type: String,
   formTitle: String,
   titleImg: String,
+  from: String,
 })
 // console.log(props) // console.log(props)
 
 // 响应式数据
 const selectedModel = ref('')
 const selectedDate = ref(null)
-// console.log(selectedModel)
-// console.log(selectedDate)
+
 // 禁用过去的日期
 const disablePastDates = (date) => {
   // 只能选择今天及未来7天内的日期
@@ -47,7 +42,6 @@ const disablePastDates = (date) => {
 }
 // 表单提交处理
 const handleSubmit = () => {
-  // 在实际应用中，这里会发送API请求
   // alert(`预约成功！\n车型: ${getCarModelText(selectedModel.value)}\n日期: ${selectedDate.value.toLocaleDateString()}`)
   toastSuccess(
     `预约成功！\n车型: ${getCarModelText(selectedModel.value)}\n日期: ${selectedDate.value.toLocaleDateString()}`,
@@ -67,6 +61,7 @@ const getCarModelText = (theId) => {
 // 从所有车型页面跳转过来反显名字
 const currentCar = ref({})
 function returnCarInfo() {
+  // 如果是路由导航过来的不需要反显
   if (!carStore.allCar.find((item) => item.id === id)) {
     return
   }
@@ -95,7 +90,7 @@ const handleChange = () => {
     ></TitleBox>
 
     <!-- 表单卡片 -->
-    <div class="container py-5 mb-5">
+    <div class="container py-5 mb-3">
       <div class="row">
         <!-- 左侧表单 -->
         <div class="col-lg-6">
@@ -167,6 +162,12 @@ const handleChange = () => {
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- 服务信息 -->
+    <div class="container-inner">
+      <h1>预约信息</h1>
+      这里是预约信息
     </div>
   </div>
 </template>

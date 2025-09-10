@@ -1,4 +1,4 @@
-// import Mock from 'mockjs'
+import Mock from 'mockjs'
 // 所有车型
 const carData = [
   // 轿车系列
@@ -241,7 +241,7 @@ const carData = [
     alt: ' 奔驰 AMG A 45 S 4MATIC+',
   },
 ]
-
+let serviceInfo = []
 export default [
   // 所有车型接口
   {
@@ -296,6 +296,62 @@ export default [
       return {
         code: 0,
         message: '清空收藏夹成功',
+      }
+    },
+  },
+  // 存储服务信息
+  // 增
+  {
+    url: '/api/car/service/add',
+    method: 'post',
+    response: (request) => {
+      const { username, type, carName, serviceDate, status } = request.body
+      const newItem = {
+        id: Mock.Random.guid(),
+        username,
+        type,
+        carName,
+        serviceDate,
+        status,
+      }
+      serviceInfo.push(newItem)
+      // 模拟审核  前端组件内也用 setTimeout 模拟
+      setTimeout(() => {
+        newItem.status = '审核通过'
+      }, 5000)
+      return {
+        code: 0,
+        message: '添加成功',
+      }
+    },
+  },
+  // 获取自己账户所有服务信息
+  {
+    url: '/api/car/service/all',
+    method: 'get',
+    response: (request) => {
+      const username = request.query.username //从get参数中获取
+      const currentUserServiceInfo = serviceInfo.filter((item) => item.username === username)
+      return {
+        code: 0,
+        message: '获取成功',
+        data: {
+          currentUserServiceInfo,
+        },
+      }
+    },
+  },
+  // 取消服务
+  {
+    url: '/api/car/service/cancel',
+    method: 'post',
+    response: (request) => {
+      const { id } = request.body
+      serviceInfo = serviceInfo.filter((item) => item.id !== id)
+      return {
+        code: 0,
+        message: '取消成功',
+        data: { serviceInfo },
       }
     },
   },

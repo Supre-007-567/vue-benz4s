@@ -12,6 +12,7 @@ onMounted(() => {
     type="保养"
     formTitle="预约表单"
     titleImg="/src/assets/images/I-01.avif"
+    from="保养"
   />
 </template>
 

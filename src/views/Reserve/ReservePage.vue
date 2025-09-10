@@ -12,11 +12,7 @@ onMounted(() => {
       type="试驾"
       formTitle="试驾表单"
       titleImg="/src/assets/images/I-03.jpg"
+      from="试驾"
     ></ServiceBox>
-
-    <!-- <i class="bi bi-star-o"></i>
-    <i class="bi bi-youtube"></i>
-    <i class="bi bi-star"></i>
-    <i class="bi bi-star-fill"></i> -->
   </div>
 </template>

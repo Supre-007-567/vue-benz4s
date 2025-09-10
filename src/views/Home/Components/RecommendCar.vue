@@ -55,6 +55,9 @@ const propsData = [
 </template>
 
 <style scoped>
+.recommend {
+  margin-bottom: 70px;
+}
 .rec-pic img {
   transition: all 0.3s;
 }

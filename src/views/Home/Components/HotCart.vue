@@ -96,6 +96,9 @@ const props = defineProps({
 /* 内容 */
 /* 热门车型 */
 /* 模型 */
+.hot {
+  margin-bottom: 70px;
+}
 model-viewer {
   height: 300px;
 }

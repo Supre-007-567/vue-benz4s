@@ -2,6 +2,7 @@
 import Header from '@/components/Header/LayoutHeader.vue'
 import ToTop from './components/ToTop.vue'
 import Footer from '@/components/Footer/LayoutFooter.vue'
+import VideoBox from './components/VideoBox.vue'
 </script>
 
 <template>
@@ -11,7 +12,7 @@ import Footer from '@/components/Footer/LayoutFooter.vue'
 
   <!-- 返回顶部按钮 -->
   <ToTop></ToTop>
-
+  <VideoBox></VideoBox>
   <!-- 底部 -->
   <Footer></Footer>
 </template>

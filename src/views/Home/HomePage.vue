@@ -1,7 +1,7 @@
 <script setup>
 // 首页
-import banner1 from '@/assets/images/Abanner04.png'
-import banner2 from '@/assets/images/Abanner05.jpg'
+import banner1 from '@/assets/images/Abanner05.jpg'
+import banner2 from '@/assets/images/Abanner04.png'
 import banner3 from '@/assets/images/Bitem01.jpg'
 import banner4 from '@/assets/images/Abanner01.png'
 // g63 图片
@@ -99,15 +99,15 @@ const propsData = [
           <div class="carousel-item active">
             <img :src="banner1" class="d-block w-100 h-100 object-cover" alt="汽车宣传图1" />
             <div class="carousel-caption text-animate d-none d-xl-block">
-              <p class="title1">真正的尊</p>
-              <p class="title2">何需靠“借”</p>
+              <p class="title1">何以奔驰</p>
+              <p class="title2">惟有奔驰</p>
             </div>
           </div>
           <div class="carousel-item">
             <img :src="banner2" class="d-block w-100 h-100 object-cover" alt="汽车宣传图2" />
             <div class="carousel-caption text-animate d-none d-xl-block">
-              <p class="title1">何以奔驰</p>
-              <p class="title2">惟有奔驰</p>
+              <p class="title1">真正的尊</p>
+              <p class="title2">何需靠“借”</p>
             </div>
           </div>
           <div class="carousel-item">
@@ -153,7 +153,7 @@ const propsData = [
       <HotCart v-for="item in propsData" :key="item.hotId" :propsData="item"></HotCart>
       <!-- 走马灯轮播 -->
       <Carousel
-        class="d-none d-xl-block"
+        class="three-carousel d-none d-xl-block"
         :items-to-show="3"
         :wrap-around="true"
         :autoplay="3000"
@@ -271,5 +271,9 @@ const propsData = [
   width: 150px;
   height: 500px;
   object-fit: cover;
+}
+
+.three-carousel {
+  margin-bottom: 70px;
 }
 </style>
