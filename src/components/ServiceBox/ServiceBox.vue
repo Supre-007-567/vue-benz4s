@@ -216,32 +216,39 @@ const cancelService = async (result) => {
     ></BsConfirm>
     <!-- 服务信息 -->
     <div class="service-info container-inner">
-      <h2 class="service-title">我的预约服务</h2>
+      <h2 class="service-title alibabaFont">我的预约服务</h2>
 
-      <!-- 多条记录可以复制 service-card -->
-      <div class="service-card" v-for="item in carStore.currentUserServiceInfo" :key="item.key">
-        <div class="service-header">
-          <h3 class="car-name">{{ item.carName }}</h3>
-          <div class="btn-box">
-            <button class="btn" @click="openCancelConfirm(item.id)">取消</button>
-            <span
-              class="status"
-              :class="{
-                'status-pending': item.status === 'pending',
-                'status-success': item.status === 'success',
-              }"
-            >
-              {{ item.status === 'pending' ? '等待审核' : '审核通过' }}</span
-            >
-            <!-- {{ item.status }} -->
+      <!-- service-card -->
+      <div v-if="carStore.currentUserServiceInfo && carStore.currentUserServiceInfo.length">
+        <div class="service-card" v-for="item in carStore.currentUserServiceInfo" :key="item.key">
+          <div class="service-header">
+            <h3 class="car-name">{{ item.carName }}</h3>
+            <div class="btn-box">
+              <button class="btn" @click="openCancelConfirm(item.id)">取消</button>
+              <span
+                class="status"
+                :class="{
+                  'status-pending': item.status === 'pending',
+                  'status-success': item.status === 'success',
+                }"
+              >
+                {{ item.status === 'pending' ? '等待审核' : '审核通过' }}</span
+              >
+              <!-- {{ item.status }} -->
+            </div>
           </div>
-        </div>
 
-        <ul class="service-details">
-          <li><strong>服务类型：</strong>{{ item.type }}</li>
-          <li><strong>预约时间：</strong>{{ formatDate(item.serviceDate) }}</li>
-          <li><strong>用户名：</strong>{{ item.username }}</li>
-        </ul>
+          <ul class="service-details">
+            <li><strong>服务类型：</strong>{{ item.type }}</li>
+            <li><strong>预约时间：</strong>{{ formatDate(item.serviceDate) }}</li>
+            <li><strong>用户名：</strong>{{ item.username }}</li>
+          </ul>
+        </div>
+      </div>
+      <div v-else>
+        <div class="empty-text">
+          暂无数据，快去<router-link to="/all"> 预约你的 Mercedes 吧</router-link> 🚗
+        </div>
       </div>
     </div>
   </div>
@@ -292,7 +299,7 @@ const cancelService = async (result) => {
   font-size: 1.8rem;
   font-weight: 600;
   margin-bottom: 24px;
-  text-align: center;
+  /* text-align: center; */
   color: #111;
   letter-spacing: 1px;
 }
@@ -378,5 +385,11 @@ const cancelService = async (result) => {
 }
 .btn-box .btn {
   border-radius: 20%;
+}
+
+/*  */
+.empty-text {
+  text-align: center;
+  margin: 100px 0;
 }
 </style>
