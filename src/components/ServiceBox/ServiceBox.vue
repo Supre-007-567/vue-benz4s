@@ -5,6 +5,7 @@ import { useCarStore } from '@/stores/car.js'
 import { toastSuccess } from '@/utiles/toast.js'
 import { useRoute } from 'vue-router'
 import TitleBox from '@/components/TitleBox/TitleBox.vue'
+import BsConfirm from '@/components/BsConfirm/BsConfirm.vue'
 
 const carStore = useCarStore()
 // 获取车辆数据
@@ -23,6 +24,8 @@ const props = defineProps({
   titleImg: String,
   from: String,
 })
+// console.log('从哪个页面进来的：', props.from)
+
 // console.log(props) // console.log(props)
 
 // 响应式数据
@@ -41,17 +44,30 @@ const disablePastDates = (date) => {
   return date < today || date > nextWeek
 }
 // 表单提交处理
-const handleSubmit = () => {
+const handleSubmit = async () => {
   // alert(`预约成功！\n车型: ${getCarModelText(selectedModel.value)}\n日期: ${selectedDate.value.toLocaleDateString()}`)
+  await carStore.fetchAddService({
+    type: props.from,
+    carName: getCarModelText(selectedModel.value),
+    serviceDate: selectedDate.value,
+    status: 'pending',
+  })
+  getserviceInfo()
+  // 5秒后再刷新一次数据
+  setTimeout(() => {
+    toastSuccess('恭喜！您的服务审核已通过')
+    getserviceInfo()
+  }, 5000)
+
   toastSuccess(
-    `预约成功！\n车型: ${getCarModelText(selectedModel.value)}\n日期: ${selectedDate.value.toLocaleDateString()}`,
+    `您的申请成功！\n车型: ${getCarModelText(selectedModel.value)}\n日期: ${selectedDate.value.toLocaleDateString()}`,
   )
   // 重置表单
   selectedModel.value = ''
   selectedDate.value = null
 }
 
-// 根据车型值获取显示文本
+// 根据车型值获取显示名字
 const getCarModelText = (theId) => {
   // console.log(value)
   const currentCar = carStore.allCar.find((item) => item.id === theId)
@@ -77,6 +93,33 @@ returnCarInfo()
 const handleChange = () => {
   console.log(selectedModel.value)
   currentCar.value = carStore.allCar.find((item) => item.id === selectedModel.value) || {}
+}
+
+// 获取当前用户服务信息
+const getserviceInfo = async () => {
+  await carStore.fetchGetServiceInfo()
+  // console.log('所有服务信息', res)
+}
+getserviceInfo()
+
+// 时间显示
+function formatDate(dateStr) {
+  const date = new Date(dateStr)
+  return date.toLocaleString() // 本地化显示，含日期和时间
+}
+
+// 取消服务
+const showConfirm = ref(false)
+const cancelId = ref(null) //取消服务的id
+// 打开弹窗
+const openCancelConfirm = (theId) => {
+  cancelId.value = theId
+  showConfirm.value = true
+}
+const cancelService = async (result) => {
+  if (!result) return
+  await carStore.fetchCancleService(cancelId.value)
+  toastSuccess('您已取消预约')
 }
 </script>
 
@@ -164,10 +207,42 @@ const handleChange = () => {
       </div>
     </div>
 
+    <!-- 确认框 -->
+    <BsConfirm
+      v-model:visible="showConfirm"
+      title="温馨提示"
+      content="确定取消服务吗？"
+      @confirm="cancelService"
+    ></BsConfirm>
     <!-- 服务信息 -->
-    <div class="container-inner">
-      <h1>预约信息</h1>
-      这里是预约信息
+    <div class="service-info container-inner">
+      <h2 class="service-title">我的预约服务</h2>
+
+      <!-- 多条记录可以复制 service-card -->
+      <div class="service-card" v-for="item in carStore.currentUserServiceInfo" :key="item.key">
+        <div class="service-header">
+          <h3 class="car-name">{{ item.carName }}</h3>
+          <div class="btn-box">
+            <button class="btn" @click="openCancelConfirm(item.id)">取消</button>
+            <span
+              class="status"
+              :class="{
+                'status-pending': item.status === 'pending',
+                'status-success': item.status === 'success',
+              }"
+            >
+              {{ item.status === 'pending' ? '等待审核' : '审核通过' }}</span
+            >
+            <!-- {{ item.status }} -->
+          </div>
+        </div>
+
+        <ul class="service-details">
+          <li><strong>服务类型：</strong>{{ item.type }}</li>
+          <li><strong>预约时间：</strong>{{ formatDate(item.serviceDate) }}</li>
+          <li><strong>用户名：</strong>{{ item.username }}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -203,5 +278,105 @@ const handleChange = () => {
   .page-header h1 {
     font-size: 1.75rem;
   }
+}
+
+/* 服务信息 */
+.service-info {
+  /* max-width: 900px;
+  margin: 60px auto;
+  padding: 0 20px; */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.service-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #111;
+  letter-spacing: 1px;
+}
+
+.service-card {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 20px 28px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+}
+
+.service-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.car-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #000;
+  margin: 0;
+}
+
+.status {
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.status-pending {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.status-success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* .status-pending {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+} */
+
+.service-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.service-details li {
+  margin-bottom: 6px;
+}
+
+.service-details strong {
+  font-weight: 600;
+  color: #000;
+}
+
+.btn-box {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.btn-box .btn {
+  border-radius: 20%;
 }
 </style>

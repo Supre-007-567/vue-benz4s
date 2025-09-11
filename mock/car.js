@@ -317,8 +317,8 @@ export default [
       serviceInfo.push(newItem)
       // 模拟审核  前端组件内也用 setTimeout 模拟
       setTimeout(() => {
-        newItem.status = '审核通过'
-      }, 5000)
+        newItem.status = 'success'
+      }, 4000)
       return {
         code: 0,
         message: '添加成功',
@@ -332,6 +332,12 @@ export default [
     response: (request) => {
       const username = request.query.username //从get参数中获取
       const currentUserServiceInfo = serviceInfo.filter((item) => item.username === username)
+      if (!currentUserServiceInfo) {
+        return {
+          code: 0,
+          messgae: '数据为空',
+        }
+      }
       return {
         code: 0,
         message: '获取成功',

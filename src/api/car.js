@@ -14,3 +14,22 @@ export const addCollectApi = async (id) => {
 export const returnCollectApi = async () => {
   await axios.post('/api/car/returnCollect')
 }
+
+// 服务数据
+// 增
+export const addServiceApi = async (obj) => {
+  const res = await axios.post('/api/car/service/add', { ...obj })
+  return res.data
+}
+
+// 获取所有当前用户的服务数据
+export const getServiceInfo = async (username) => {
+  const res = await axios.get('/api/car/service/all', { params: { username } })
+  return res.data
+}
+
+// 取消服务
+export const cancelServiceApi = async (id) => {
+  const res = await axios.post('/api/car/service/cancel', { id })
+  return res.data
+}

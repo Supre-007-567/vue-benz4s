@@ -21,20 +21,19 @@ const collectData = ref([])
 const getCollectData = async () => {
   await carStore.fetchAllCar()
   collectData.value = carStore.allCar.filter((item) => item.isCollect === true)
-  console.log('collect结果:', collectData.value)
-  // console.log(collectData.value.length)
+  // console.log('collect结果:', collectData.value)
 }
 getCollectData()
 
 // 立即购买
 const goToBuy = (theId) => {
-  console.log('ok')
+  // console.log('ok')
 
   router.push(`/cardetail?id=${theId}`)
 }
 // 预约试驾
 const goToReservation = (theId) => {
-  console.log('ok')
+  // console.log('ok')
 
   // router.push(`/cardetail?id=${theId}`)
   router.push(`/reserve?id=${theId}`)
