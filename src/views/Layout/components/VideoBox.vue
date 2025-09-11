@@ -19,4 +19,14 @@
   height: 100%;
   object-fit: cover;
 }
+@media (max-width: 996px) {
+  .video-container {
+    height: 450px;
+  }
+}
+@media (max-width: 720px) {
+  .video-container {
+    height: 400px;
+  }
+}
 </style>

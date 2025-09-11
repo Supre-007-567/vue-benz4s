@@ -20,15 +20,6 @@ const openConfirm = () => {
   // confirmContent.value = content
   showConfirm.value = true
 }
-// const handleLogout = (result) => {
-//   flag.value = false
-//   // showConfirm.value = true
-//   // showConfirm.value = true
-
-//   console.log('退出登录：', result)
-
-//   userStore.logout()
-// }
 
 // 弹窗点击确认才执行
 const handleLogout = (result) => {
@@ -50,7 +41,7 @@ let recommendTop = 0 // 推荐区域顶部距离页面顶部的距离
 let headerHeight = 0 // 导航栏自身高度（用于占位符）
 let ticking = false // 防抖动：避免滚动事件频繁触发
 
-// 1. 重新计算推荐区域位置（窗口 resize 时也需重新计算）
+// 1. 重新计算推荐区域位置
 const recalcRecommendTop = () => {
   if (!recommendEl) return
   const rect = recommendEl.getBoundingClientRect()
@@ -133,7 +124,7 @@ onUnmounted(() => {
     ]"
   >
     <nav class="navbar navbar-expand-lg custom-navbar px-4 py-2">
-      <!-- 原有导航内容完全不变 -->
+      <!-- 导航栏 -->
       <div class="container-fluid">
         <div class="container-inner d-flex align-items-center">
           <router-link to="/home" class="navbar-brand me-4 d-flex align-items-center">
@@ -282,5 +273,12 @@ onUnmounted(() => {
 #header-spacer {
   width: 100%;
   transition: display 0.3s ease;
+}
+
+.navbar-toggler-icon {
+  filter: invert(1); /* 白色，更适合黑色背景 */
+  width: 30px;
+  height: 30px;
+  background-size: 30px 30px; /* 调整大小 */
 }
 </style>
