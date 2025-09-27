@@ -125,7 +125,7 @@ const cancelService = async (result) => {
 
 <template>
   <div class="service-page bg-light">
-    <!-- 页面标题区域 -->
+    <!-- 页面标题区域   向子组件传送数据 -->
     <TitleBox
       :title="props.title"
       :desc="`选择您的车型和方便的时间，我们将为您的爱车提供${props.type}服务`"

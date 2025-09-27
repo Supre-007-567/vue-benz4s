@@ -32,7 +32,6 @@ onMounted(() => {
     keyboard: false,
   })
 
-  // ✅ 监听 bootstrap 的隐藏事件
   modalElement.addEventListener('hidden.bs.modal', handleModalClose)
 })
 
